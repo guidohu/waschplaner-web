@@ -1,0 +1,19 @@
+# Waschplaner website (landing page, pricing and docs).
+# Usage: docker compose up -d --build   (optional: cp .env.example .env to set the links)
+# Then open http://localhost:8081 (or your WEB_PORT).
+
+name: waschplaner-web
+
+services:
+  web:
+    build:
+      context: .
+      # The links are baked into the build; change .env and rebuild to update them.
+      args:
+        VITE_APP_URL: ${VITE_APP_URL:-https://app.waschplaner.com}
+        VITE_REPO_URL: ${VITE_REPO_URL:-https://github.com/waschplaner/waschplaner}
+        VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-hallo@waschplaner.com}
+    restart: unless-stopped
+    ports:
+      # 8081, so it can run next to the app (which uses 8080).
+      - "${WEB_PORT:-8081}:80"
