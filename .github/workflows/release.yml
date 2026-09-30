@@ -1,0 +1,76 @@
+# Builds the website's Docker image for every version tag (v1.0.0, v1.2.3 …) and
+# publishes it to the GitHub Container Registry as ghcr.io/<owner>/<repo>.
+#
+#   git tag v1.0.0 && git push origin v1.0.0
+#
+# The image gets the tags 1.0.0, 1.0, 1 and latest. The links baked into the
+# site come from the repository variables VITE_APP_URL, VITE_REPO_URL and
+# VITE_CONTACT_EMAIL (Settings → Secrets and variables → Actions → Variables);
+# without them the defaults in src/site.js apply.
+name: Release
+
+on:
+  push:
+    tags: ['v[0-9]+.[0-9]+.[0-9]+']
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  check:
+    name: Lint and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+
+  image:
+    name: Build and push the image
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Image name and tags
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=raw,value=latest
+
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          # Intel/AMD servers and ARM ones (e.g. a Raspberry Pi or an ARM cloud server).
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VITE_APP_URL=${{ vars.VITE_APP_URL }}
+            VITE_REPO_URL=${{ vars.VITE_REPO_URL }}
+            VITE_CONTACT_EMAIL=${{ vars.VITE_CONTACT_EMAIL }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

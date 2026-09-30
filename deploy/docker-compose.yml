@@ -1,0 +1,13 @@
+# Runs a released website image (built by .github/workflows/release.yml) on a server.
+# Usage: copy this file to the server, then
+#   WEB_VERSION=1.0.0 docker compose up -d
+# Without WEB_VERSION the newest release ("latest") is used.
+
+name: waschplaner-web
+
+services:
+  web:
+    image: ghcr.io/guidohu/waschplaner:${WEB_VERSION:-latest}
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-8081}:80"

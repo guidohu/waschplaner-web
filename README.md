@@ -30,6 +30,30 @@ The links to the hosted app, the repository and the contact address are baked in
 | `VITE_CONTACT_EMAIL` | `hallo@waschplaner.com` | Support and legal contact |
 | `WEB_PORT` | `8081` | Port on the host (8081, so it can run next to the app on 8080) |
 
+## Releases and deployment
+
+Pushing a version tag builds the Docker image and publishes it to the GitHub Container Registry
+(`.github/workflows/release.yml`). Lint and tests run first; the image is only built if they pass.
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+The image `ghcr.io/guidohu/waschplaner` gets the tags `1.0.0`, `1.0`, `1` and `latest`, for Intel/AMD and ARM
+servers. The links baked into the site come from the repository variables `VITE_APP_URL`, `VITE_REPO_URL` and
+`VITE_CONTACT_EMAIL` (Settings → Secrets and variables → Actions → Variables); without them the defaults above apply.
+
+On the server, `deploy/docker-compose.yml` runs a released image:
+
+```bash
+WEB_VERSION=1.0.0 docker compose -f deploy/docker-compose.yml up -d
+```
+
+If the package is private (the default for a private repository), log in on the server first with
+`docker login ghcr.io -u <github user>` and a personal access token with `read:packages`, or make the package public
+under the repository's Packages settings.
+
 ## Development
 
 ```bash
