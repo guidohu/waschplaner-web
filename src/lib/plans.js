@@ -1,10 +1,10 @@
-// What each way of using Waschplaner includes. The rule behind the split:
-// Free is everything that happens when someone opens the plan; Plus is what the
-// server does on its own (e-mails, calendar feeds, the live screen, reminders)
-// or keeps for longer (history). Self-hosted has everything.
+// What each way of using Waschplaner includes, as in the app: Free is the plan
+// on paper (the administrators set it up, change it and print it); Plus puts it
+// online for every resident, with everything the server then does for them.
+// Self-hosted has everything; there Plus is a free switch unless payments are set up.
 //
 // A value is true (included), false (not included), 'soon' (planned) or the key
-// of a short text in pricing.values.* (e.g. a limit).
+// of a short text in pricing.values.*.
 
 export const PLANS = ['free', 'plus', 'self']
 
@@ -14,11 +14,18 @@ export const FEATURE_GROUPS = [
     rows: [
       { key: 'house', free: true, plus: true, self: 'manyHouses' },
       { key: 'wizard', free: true, plus: true, self: true },
-      { key: 'booking', free: true, plus: true, self: true },
-      { key: 'rules', free: true, plus: true, self: true },
-      { key: 'inApp', free: true, plus: true, self: true },
-      { key: 'pwa', free: true, plus: true, self: true },
-      { key: 'passwordMail', free: true, plus: true, self: 'withSmtp' },
+      { key: 'edit', free: true, plus: true, self: true },
+      { key: 'print', free: 'printFree', plus: 'printYear', self: 'printYear' },
+    ],
+  },
+  {
+    key: 'online',
+    rows: [
+      { key: 'join', free: false, plus: true, self: true },
+      { key: 'booking', free: false, plus: true, self: true },
+      { key: 'rules', free: false, plus: true, self: true },
+      { key: 'mine', free: false, plus: true, self: true },
+      { key: 'activity', free: false, plus: true, self: true },
     ],
   },
   {
@@ -26,21 +33,15 @@ export const FEATURE_GROUPS = [
     rows: [
       { key: 'mail', free: false, plus: true, self: 'withSmtp' },
       { key: 'ical', free: false, plus: true, self: true },
-      { key: 'kiosk', free: false, plus: true, self: true },
+      { key: 'screen', free: false, plus: true, self: true },
       { key: 'reminders', free: false, plus: 'soon', self: 'soon' },
       { key: 'stats', free: false, plus: 'soon', self: 'soon' },
     ],
   },
   {
-    key: 'history',
-    rows: [
-      { key: 'bookings', free: 'weeks', plus: 'unlimited', self: 'unlimited' },
-      { key: 'log', free: 'days', plus: 'unlimited', self: 'unlimited' },
-    ],
-  },
-  {
     key: 'ops',
     rows: [
+      { key: 'payment', free: 'nothing', plus: 'yearly', self: 'switch' },
       { key: 'hosting', free: 'us', plus: 'us', self: 'you' },
       { key: 'updates', free: 'auto', plus: 'auto', self: 'yourself' },
       { key: 'support', free: 'docs', plus: 'email', self: 'docs' },

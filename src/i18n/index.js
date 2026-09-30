@@ -1,11 +1,15 @@
 import { reactive } from 'vue'
 import de from './de'
 import en from './en'
+import fr from './fr'
+import it from './it'
+import { LINKS } from '../site'
 
 // Minimal i18n, the same as in the app: t(key, { name }) fills {placeholders};
 // texts of the form "one|other" pick a plural form by the parameter n.
-// tm(key) returns lists and objects (e.g. FAQ items) as they are.
-const dicts = { de, en }
+// tm(key) returns lists and objects (e.g. FAQ items). Both fill the site's values
+// ({price}, {trial}, {app} …, see LINKS in site.js) into texts that use them.
+const dicts = { de, en, fr, it }
 
 function initialLocale() {
   try {
@@ -14,7 +18,9 @@ function initialLocale() {
   } catch {
     /* storage unavailable */
   }
-  return (navigator.language || 'de').toLowerCase().startsWith('de') ? 'de' : 'en'
+  // The first of the browser's languages that the site has, else English.
+  const wanted = navigator.languages?.length ? navigator.languages : [navigator.language || 'de']
+  return wanted.map((l) => l.slice(0, 2).toLowerCase()).find((l) => dicts[l]) || 'en'
 }
 
 export const i18n = reactive({ locale: initialLocale() })
@@ -36,7 +42,11 @@ export function setLocale(locale, persist = true) {
 export const LOCALES = [
   { code: 'de', name: 'Deutsch' },
   { code: 'en', name: 'English' },
+  { code: 'fr', name: 'Français' },
+  { code: 'it', name: 'Italiano' },
 ]
+/** The languages of the app itself; the website has more. */
+export const APP_LOCALES = ['de', 'en']
 
 function lookup(dict, key) {
   // Audit keys contain dots ("audit.house.created"); try the longest known prefix first.
@@ -51,6 +61,12 @@ function lookup(dict, key) {
   return node
 }
 
+/** Fills {placeholders} from `params`, then from the site's values; unknown ones stay. */
+export const fill = (s, params = {}) => s.replace(/\{(\w+)\}/g, (m, k) => String(params[k] ?? LINKS[k] ?? m))
+const fillDeep = (v) =>
+  typeof v === 'string' ? fill(v) : Array.isArray(v) ? v.map(fillDeep) : v && typeof v === 'object'
+    ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fillDeep(x)])) : v
+
 export function t(key, params = {}) {
   let s = lookup(dicts[i18n.locale], key) ?? lookup(de, key)
   if (typeof s !== 'string') return key
@@ -58,11 +74,11 @@ export function t(key, params = {}) {
     const [one, other] = s.split('|')
     s = Number(params.n) === 1 ? one : other
   }
-  return s.replace(/\{(\w+)\}/g, (_, k) => params[k] ?? `{${k}}`)
+  return fill(s, params)
 }
 
 /** A list or object from the texts, e.g. tm('home.faq.items'). */
-export const tm = (key) => lookup(dicts[i18n.locale], key) ?? lookup(de, key)
+export const tm = (key) => fillDeep(lookup(dicts[i18n.locale], key) ?? lookup(de, key))
 
 /** True if the key exists (in the current locale or the German fallback). */
 export const hasKey = (key) => typeof (lookup(dicts[i18n.locale], key) ?? lookup(de, key)) === 'string'

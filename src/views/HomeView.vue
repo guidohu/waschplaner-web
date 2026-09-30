@@ -9,6 +9,18 @@ import { t, tm } from '../i18n'
 import { appLink } from '../site'
 
 usePageTitle(() => t('home.title'))
+
+// What is on Free and what comes with Plus, as in the app.
+const FEATURES = [
+  { key: 'plan', icon: 'repeat' },
+  { key: 'rooms', icon: 'layers' },
+  { key: 'print', icon: 'print' },
+  { key: 'book', icon: 'plus-circle', plus: true },
+  { key: 'finish', icon: 'check-circle', plus: true },
+  { key: 'takeover', icon: 'bolt', plus: true },
+  { key: 'mail', icon: 'calendar', plus: true },
+  { key: 'screen', icon: 'screen', plus: true },
+]
 </script>
 
 <template>
@@ -65,10 +77,13 @@ usePageTitle(() => t('home.title'))
         <p>{{ $t('home.features.text') }}</p>
       </div>
       <div class="features">
-        <article v-for="f in tm('home.features.items')" :key="f.title" class="feature">
-          <span class="icon-tile"><BaseIcon :name="f.icon" :size="22" /></span>
-          <h3>{{ f.title }}</h3>
-          <p>{{ f.text }}</p>
+        <article v-for="f in FEATURES" :key="f.key" class="feature">
+          <div class="feature-head">
+            <span class="icon-tile" :class="{ ok: !f.plus }"><BaseIcon :name="f.icon" :size="22" /></span>
+            <span class="badge" :class="f.plus ? 'primary' : 'ok'">{{ $t(f.plus ? 'common.plus' : 'common.free') }}</span>
+          </div>
+          <h3>{{ $t(`home.features.items.${f.key}.title`) }}</h3>
+          <p>{{ $t(`home.features.items.${f.key}.text`) }}</p>
         </article>
       </div>
     </div>
@@ -161,6 +176,7 @@ usePageTitle(() => t('home.title'))
 
 .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 .feature { padding: 1.25rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+.feature-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
 .feature h3 { margin: 0.9rem 0 0.3rem; }
 .feature p { margin: 0; color: var(--text-2); font-size: 0.95rem; }
 

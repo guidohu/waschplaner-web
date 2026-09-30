@@ -6,7 +6,8 @@ import DocBlocks from '../../components/DocBlocks.vue'
 import RichText from '../../components/RichText.vue'
 import { usePageTitle } from '../../composables/usePageTitle'
 import { docPages } from '../../content'
-import { t } from '../../i18n'
+import { APP_LOCALES, i18n, t } from '../../i18n'
+import BaseCallout from '../../components/BaseCallout.vue'
 
 const props = defineProps({ slug: { type: String, required: true } })
 
@@ -16,6 +17,8 @@ const prev = computed(() => docPages.value[index.value - 1] || null)
 const next = computed(() => (index.value >= 0 ? docPages.value[index.value + 1] : null) || null)
 
 usePageTitle(() => page.value?.title || t('docs.notFound'))
+// The app has fewer languages than the website: say so where buttons are quoted.
+const otherLanguage = computed(() => !APP_LOCALES.includes(i18n.locale))
 </script>
 
 <template>
@@ -25,6 +28,7 @@ usePageTitle(() => page.value?.title || t('docs.notFound'))
       <h1>{{ page.title }}</h1>
       <p class="lead">{{ page.summary }}</p>
     </header>
+    <BaseCallout v-if="otherLanguage" class="app-lang" icon="globe"><RichText :text="$t('docs.appLanguage')" /></BaseCallout>
     <DocBlocks :blocks="page.blocks" />
     <p class="ask small muted"><BaseIcon name="mail" :size="16" /> <span><RichText :text="$t('docs.edit')" /></span></p>
     <nav class="pager" :aria-label="$t('docs.nav')">
@@ -48,6 +52,7 @@ usePageTitle(() => page.value?.title || t('docs.notFound'))
 .page-head { margin-bottom: 1.75rem; }
 .page-head h1 { font-size: 2rem; font-weight: 800; }
 .page-head .lead { margin: 0; }
+.app-lang { margin-bottom: 1.25rem; }
 .ask { display: flex; align-items: center; gap: 0.45rem; margin: 2.5rem 0 0; }
 .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
 .pager-link {

@@ -3,9 +3,7 @@
 import BaseIcon from './BaseIcon.vue'
 import { t } from '../i18n'
 import { FEATURE_GROUPS, PLANS } from '../lib/plans'
-import { FREE_HISTORY_WEEKS, FREE_LOG_DAYS } from '../site'
-
-const text = (v) => t(`pricing.values.${v}`, { weeks: FREE_HISTORY_WEEKS, days: FREE_LOG_DAYS })
+const text = (v) => t(`pricing.values.${v}`)
 </script>
 
 <template>

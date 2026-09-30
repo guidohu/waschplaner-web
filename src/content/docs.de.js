@@ -1,35 +1,34 @@
 // Help pages in German. Each page is a list of blocks, drawn by DocBlocks.vue:
 // { h2 }, { p }, { list }, { steps: [{ title, text?, code? }] }, { code, title? },
 // { callout, tone? }, { table: { head, rows } }. Texts use the inline markup
-// (**bold**, `code`, [label](url)) and {app}, {repo}, {email}.
+// (**bold**, `code`, [label](url)) and the values from site.js ({app}, {trial} …).
 export default [
   {
     slug: 'setup',
     section: 'use',
     icon: 'wand',
     title: 'Haus einrichten',
-    summary: 'Der Assistent in sechs Schritten, und was danach kommt.',
+    summary: 'Der Assistent in sechs Schritten und was danach kommt.',
     blocks: [
       { p: 'Der Assistent fragt in sechs kurzen Schritten alles ab, was der Plan braucht. Deine Eingaben bleiben auf diesem Gerät (ohne Passwort), bis du im letzten Schritt das Haus erstellst. Du kannst alles später ändern.' },
-      { callout: 'Gehostet: Öffne [{app}/setup]({app}/setup). Selbst betrieben: Öffne die Adresse deines Servers und tippe auf «Jetzt einrichten».', tone: 'tip' },
+      { callout: 'Gehostet: Öffne [{app}/setup]({app}/setup). Selbst betrieben: Öffne die Adresse deines Servers und tippe auf «Jetzt einrichten – in 5 Minuten».', tone: 'tip' },
       { h2: 'Die sechs Schritte' },
       {
         steps: [
           { title: 'Haus', text: 'Der Name des Hauses und die Wohnungen. «Schnell ausfüllen» erstellt Bezeichnungen wie «EG links, EG rechts, 1. OG links». Tippe auf einen Punkt, um die Farbe einer Wohnung zu ändern.' },
-          { title: 'Waschküche', text: 'Wie viele Waschmaschinen, Tumbler und Trockenräume es gibt, und wie gebucht wird: **alles zusammen** (eine Waschküche pro Buchung), **jede Maschine einzeln** oder **gemischt**, z. B. Waschmaschine und Tumbler zusammen, den Trockenraum einzeln.' },
+          { title: 'Waschküche', text: 'Wie viele Waschmaschinen, Tumbler und Trockenräume es gibt und wie gebucht wird: **alles zusammen** (eine Waschküche pro Buchung), **jede Maschine einzeln** oder **gemischt**, z. B. Waschmaschine und Tumbler zusammen, den Trockenraum einzeln.' },
           { title: 'Zeiten', text: 'An welchen Tagen gewaschen wird und wie ein Tag in Zeitfenster aufgeteilt ist: ganzer Tag, 2 oder 3 Zeitfenster, alle 2 Stunden oder eigene Zeiten, auf Wunsch an einzelnen Tagen anders. Eine Wochenansicht zeigt das Ergebnis.' },
           { title: 'Fester Plan', text: 'Wer welches Zeitfenster regelmässig hat, wie wiederkehrende Termine: jede Woche, alle 2–4 Wochen oder einmal im Monat (1.–4. oder letzter Wochentag). Der Assistent schlägt eine faire Verteilung vor; ein Monatskalender und die «Zeit pro Wohnung» zeigen das Ergebnis.' },
-          { title: 'Regeln', text: 'Wie viel zusätzlich gebucht werden darf, wie weit im Voraus, und was mit nicht genutzten Zeitfenstern passiert. Eine Zusammenfassung in einfachen Worten zeigt, was gilt.' },
-          { title: 'Zugang', text: 'Vorname, E-Mail und Passwort für die Verwaltung, dazu eine Zusammenfassung von allem. Danach ist der Plan bereit.' },
+          { title: 'Regeln', text: 'Wie viel zusätzlich gebucht werden darf, wie weit im Voraus und was mit nicht genutzten Zeitfenstern passiert. Eine Zusammenfassung in einfachen Worten zeigt, was gilt.' },
+          { title: 'Zugang', text: 'Vorname, E-Mail und Passwort für die Verwaltung. Dazu wählst du **Gratis** (zum Ausdrucken) oder **Plus** ({trial} Tage geschenkt, ohne Zahlungsangaben) und siehst eine Zusammenfassung von allem.' },
         ],
       },
-      { callout: 'Verwende Bezeichnungen wie «2. OG links» statt Familiennamen. Der Plan ist für alle im Haus sichtbar.', tone: 'privacy' },
-      { h2: 'Danach: Bewohner:innen einladen' },
-      { p: 'Die Seite «Einladen» erklärt die nächsten Schritte:' },
+      { callout: 'Verwende Bezeichnungen wie «2. OG links» statt Familiennamen. Der Plan hängt in der Waschküche, und mit Plus sehen ihn alle im Haus online.', tone: 'privacy' },
+      { h2: 'Danach: ausdrucken oder einladen' },
       {
         list: [
-          '**Aushang drucken** und in der Waschküche aufhängen. Der QR-Code darauf führt zum Plan des Hauses.',
-          '**Zugangscodes verteilen:** Jede Wohnung hat einen 6-stelligen Code. Die Karten mit eigenem QR-Code füllen ihn automatisch aus.',
+          '**Gratis:** Druck den Plan unter «Verwalten → Drucken» aus: zwei Wochen pro A4-Seite, für jede Maschine oder jeden Raum, bis zu {printFree} Wochen am Stück (mit Plus ein ganzes Jahr). Im Druckfenster kannst du ihn auch als PDF speichern. Änderst du später etwas, druckst du einfach neu.',
+          '**Plus:** Die Seite «Einladen» erklärt die nächsten Schritte: Aushang mit dem QR-Code drucken und in der Waschküche aufhängen, und jeder Wohnung ihren 6-stelligen Zugangscode geben. Die Karten mit eigenem QR-Code füllen ihn automatisch aus.',
           '**Selbst betrieben und nur ein Haus?** Setze danach `ALLOW_SIGNUP=false`, damit niemand weitere Häuser anlegt.',
         ],
       },
@@ -42,6 +41,7 @@ export default [
     title: 'Für Bewohner:innen',
     summary: 'Beitreten, buchen, freigeben: der Plan im Alltag.',
     blocks: [
+      { callout: 'Online nutzt ihr den Plan, wenn euer Haus [Plus](/pricing) hat. Sonst hängt er gedruckt in der Waschküche, und die App zeigt «Der Online-Plan ist pausiert».' },
       { h2: 'Beitreten' },
       {
         steps: [
@@ -68,16 +68,18 @@ export default [
         },
       },
       { h2: 'Meine Wäsche' },
-      { p: 'Unter «Meine Wäsche» siehst du, was als Nächstes kommt, die festen Zeiten deiner Wohnung («Jeden zweiten Dienstag, 07:00–17:00») und deine Benachrichtigungen. Dort stellst du auch die Schriftgrösse ein (Normal, Gross, Sehr gross) und abonnierst den Kalender.' },
-      { callout: 'Kalender-Abo und E-Mail-Benachrichtigungen gibt es im gehosteten Waschplaner mit [Plus](/pricing) und auf selbst betriebenen Servern.' },
-      { h2: 'Aufs Handy legen' },
+      { p: 'Unter «Meine Wäsche» siehst du, was als Nächstes kommt, die festen Zeiten deiner Wohnung («Jeden zweiten Dienstag, 07:00–17:00») und deine Benachrichtigungen. Dort wählst du, ob Änderungen an deinen Zeitfenstern auch per E-Mail kommen, abonnierst den Kalender und stellst die Schriftgrösse ein (Normal, Gross, Sehr gross).' },
+      { callout: 'Wer die Adresse des Kalender-Abos hat, sieht die Zeiten deiner Wohnung. Teile sie nur mit deinem Haushalt.', tone: 'privacy' },
+      { h2: 'Als App aufs Handy' },
       {
         list: [
+          '**Android und Computer:** Unter «Meine Wäsche → Als App» auf «Als App installieren» tippen.',
           '**iPhone und iPad:** In Safari auf «Teilen» und dann auf «Zum Home-Bildschirm» tippen.',
-          '**Android:** Im Chrome-Menü «App installieren» oder «Zum Startbildschirm hinzufügen» wählen.',
-          'Danach öffnen sich der Plan und «Meine Wäsche» auch ohne Internet, zum Ansehen.',
+          'Danach öffnet sich der Plan auch ohne Internet und zeigt den zuletzt geladenen Stand. Buchen geht wieder, sobald du online bist.',
         ],
       },
+      { h2: 'Wenn Plus abgelaufen ist' },
+      { p: 'Dann kannst du den Plan noch {view} Tage ansehen, aber nichts buchen oder ändern. Danach hängt er wieder gedruckt in der Waschküche – bis die Verwaltung Plus wieder kauft.' },
     ],
   },
   {
@@ -85,7 +87,7 @@ export default [
     section: 'use',
     icon: 'sliders',
     title: 'Für die Verwaltung',
-    summary: 'Fester Plan, Maschinen, Regeln, Wohnungen und Personen.',
+    summary: 'Fester Plan, Drucken, Maschinen, Regeln, Wohnungen und Plus.',
     blocks: [
       { p: 'Unter «Verwalten» änderst du alles, was du im Assistenten eingerichtet hast. Änderungen sammeln sich in einer Leiste am unteren Rand, die sagt, was sich ändert («2 Zeitfenster geändert · 1 neu»). Sie gelten erst nach «Speichern». Was sich nicht rückgängig machen lässt, fragt vorher nach und nennt die Folgen.' },
       { h2: 'Die Bereiche' },
@@ -93,16 +95,29 @@ export default [
         table: {
           head: ['Bereich', 'Was du dort machst'],
           rows: [
-            ['**Fester Plan**', 'Wer welches Zeitfenster regelmässig hat. Derselbe Editor wie im Assistenten, mit Monatskalender und «Zeit pro Wohnung». Zeitfenster lassen sich ziehen oder «malen»: Wohnung wählen, Zeitfenster antippen.'],
+            ['**Fester Plan**', 'Wer welches Zeitfenster regelmässig hat. Derselbe Editor wie im Assistenten, mit Monatskalender und «Zeit pro Wohnung». Zeitfenster ziehen (verschieben oder tauschen) oder «malen»: Wohnung wählen, Zeitfenster antippen oder darüberwischen.'],
             ['**Maschinen & Zeiten**', 'Maschinen und Räume, ihre Zeitfenster pro Tag und wie gebucht wird. Eine Waschküche lässt sich in einzelne Maschinen aufteilen und wieder zusammenlegen; Zeiten, feste Zeiten und Buchungen bleiben erhalten.'],
-            ['**Regeln**', 'Zusätzliche Buchungen pro Woche (gezählt in Zeitfenstern oder Tagen), wie weit im Voraus gebucht werden darf und wann andere ein Zeitfenster übernehmen dürfen.'],
-            ['**Einladen**', 'Aushang drucken und den Einladungslink teilen oder erneuern.'],
+            ['**Regeln** · Plus', 'Zusätzliche Buchungen pro Woche (gezählt in Zeitfenstern oder Tagen), wie weit im Voraus gebucht werden darf und wann andere ein Zeitfenster übernehmen dürfen.'],
+            ['**Drucken**', 'Zwei Wochen pro A4-Seite, ab einer Woche deiner Wahl, für die gewählten Maschinen und Räume: mit Gratis bis zu {printFree} Wochen am Stück, mit Plus ein ganzes Jahr. Im Druckfenster auch «Als PDF speichern».'],
+            ['**Einladen** · Plus', 'Aushang mit dem QR-Code drucken und den Einladungslink teilen oder erneuern.'],
             ['**Wohnungen**', 'Bezeichnungen, Farben und Zugangscodes. Ein neuer Code macht die alte Karte ungültig; wer schon angemeldet ist, bleibt angemeldet.'],
-            ['**Personen**', 'Wer zu welcher Wohnung gehört. Personen entfernen.'],
-            ['**Haus**', 'Name und allgemeine Einstellungen des Hauses.'],
-            ['**Aktivitäten**', 'Wer wann was gebucht, freigegeben oder geändert hat.'],
+            ['**Personen** · Plus', 'Wer zu welcher Wohnung gehört. Personen entfernen.'],
+            ['**Aktivität** · Plus', 'Wer wann was gebucht, freigegeben oder geändert hat.'],
+            ['**Einstellungen**', 'Name, Zeitzone und Sprache des Hauses, ob man per QR-Code beitreten kann und ob es die öffentliche Plan-Ansicht gibt.'],
+            ['**Plus**', 'Plus testen, kaufen oder verlängern und die bisherigen Zahlungen ansehen.'],
           ],
         },
+      },
+      { p: 'Mit Gratis sind die Bereiche, die zu Plus gehören, sichtbar, aber inaktiv und mit Plus markiert.' },
+      { h2: 'Plus verwalten' },
+      {
+        list: [
+          '**Testen:** Jedes Haus kann Plus einmal {trial} Tage gratis nutzen, ohne Zahlungsangaben – im letzten Schritt der Einrichtung oder mit dem Angebot unter «Verwalten». {trialRemind} Tage vor dem Ende kommt eine E-Mail.',
+          '**Kaufen:** Unter «Verwalten → Plus», für ein Jahr, auf der sicheren Bezahlseite von Stripe. Bezahlt wird pro aktive Wohnung. Kaufst du während des Tests, beginnt das Jahr erst, wenn er endet.',
+          '**Verlängern:** In den letzten {renew} Tagen; das neue Jahr beginnt, wenn das alte endet. {remind} Tage vor dem Ende erinnern wir dich per E-Mail. Nichts verlängert sich von selbst.',
+          '**Neue Wohnung während des Jahres:** Die Seite «Wohnungen» fragt nach und öffnet die Bezahlseite für ihren Anteil bis zum Ende des Jahres (mindestens CHF {min}). Die Wohnung startet, sobald bezahlt ist; alle anderen merken nichts.',
+          '**Wenn Plus endet:** Die Bewohner:innen können den Plan noch {view} Tage ansehen. Danach hat das Haus Gratis: Du änderst und druckst den Plan weiter, und alles bleibt gespeichert.',
+        ],
       },
       { h2: 'Regeln fürs Übernehmen' },
       {
@@ -112,11 +127,11 @@ export default [
           '**Nie:** Zeitfenster anderer lassen sich nicht übernehmen.',
         ],
       },
-      { p: 'Die betroffene Wohnung bekommt eine Benachrichtigung in der App, mit Plus oder eigenem Mailserver auch per E-Mail.' },
+      { p: 'Die betroffene Wohnung bekommt eine Benachrichtigung in der App und, wenn sie es so eingestellt hat, eine E-Mail.' },
       { h2: 'Wenn sich feste Zeiten überschneiden' },
       { p: 'Gelten für ein Zeitfenster zwei feste Zeiten, gewinnt die, die sich seltener wiederholt. So geht «Jeden Montag Wohnung A, aber am ersten Montag im Monat Wohnung B».' },
-      { h2: 'Live-Bildschirm' },
-      { p: 'Für einen Bildschirm in der Waschküche gibt es eine Ansicht ohne Anmeldung, die sich jede Minute selbst aktualisiert. Im gehosteten Waschplaner ist sie Teil von [Plus](/pricing).' },
+      { h2: 'Öffentliche Plan-Ansicht' },
+      { p: 'Für einen Bildschirm in der Waschküche gibt es eine Ansicht ohne Anmeldung, ohne Notizen und ohne Namen von Personen. Sie aktualisiert sich jede Minute. Du schaltest sie unter «Einstellungen» ein; sie gehört zu Plus.' },
     ],
   },
   {
@@ -126,7 +141,7 @@ export default [
     title: 'Selbst hosten',
     summary: 'Waschplaner mit Docker auf deinem eigenen Server betreiben.',
     blocks: [
-      { p: 'Waschplaner besteht aus drei Containern: der Datenbank (PostgreSQL 17), dem Server (Go) und der Weboberfläche (nginx). Docker Compose startet alles zusammen. Selbst betrieben hast du alle Funktionen, ohne Kosten und ohne Grenzen.' },
+      { p: 'Waschplaner besteht aus drei Containern: der Datenbank (PostgreSQL 17), dem Server (Go) und der Weboberfläche (nginx). Docker Compose startet alles zusammen. Selbst betrieben hast du alle Funktionen, und Plus kostet nichts, wenn du keine Zahlungen einrichtest.' },
       { h2: 'Was du brauchst' },
       {
         list: [
@@ -138,23 +153,34 @@ export default [
       { h2: 'Schnellstart' },
       { p: 'Zum Ausprobieren auf deinem Computer:' },
       { code: 'git clone {repo}.git waschplaner\ncd waschplaner\ndocker compose up -d --build' },
-      { p: 'Öffne danach [http://localhost:8080](http://localhost:8080) und tippe auf «Jetzt einrichten». Die Datenbank wird beim Start automatisch eingerichtet und aktualisiert.' },
+      { p: 'Öffne danach [http://localhost:8080](http://localhost:8080) und tippe auf «Jetzt einrichten – in 5 Minuten». Die Datenbank wird beim Start automatisch eingerichtet und aktualisiert.' },
       { h2: 'Für den Betrieb' },
       {
         steps: [
           { title: 'Einstellungen anlegen', text: 'Kopiere die Vorlage und erzeuge ein sicheres Datenbank-Passwort:', code: 'cp .env.example .env\nopenssl rand -base64 32' },
-          { title: 'Wichtige Werte setzen', text: '`POSTGRES_PASSWORD` auf das erzeugte Passwort, `PUBLIC_URL` auf deine Adresse (z. B. `https://waschplaner.example.ch`) und `COOKIE_SECURE=true`, sobald HTTPS läuft. Alle Werte stehen unter [Konfiguration](/docs/configuration).' },
+          { title: 'Wichtige Werte setzen', text: '`POSTGRES_PASSWORD` auf das erzeugte Passwort, `PUBLIC_URL` auf deine Adresse (z. B. `https://waschplaner.example.ch`), `COOKIE_SECURE=true`, sobald HTTPS läuft, und für Plus ohne Zahlungen `FAKE_STRIPE=false`. Alle Werte stehen unter [Konfiguration](/docs/configuration).' },
           { title: 'Starten', code: 'docker compose up -d --build' },
         ],
       },
+      { h2: 'Plus und Zahlungen' },
+      { p: 'In `docker-compose.yml` ist `FAKE_STRIPE=true` gesetzt. Plus wird dann auf einer simulierten Bezahlseite «bezahlt», im Testmodus und ohne echtes Geld. So kannst du alles ausprobieren. Für den Betrieb wählst du eine der zwei Möglichkeiten:' },
+      {
+        list: [
+          '**Ohne Zahlungen**, z. B. nur für euer Haus: `FAKE_STRIPE=false` und `STRIPE_SECRET_KEY` leer lassen. Dann schaltest du Plus unter «Verwalten → Plus» einfach ein, gratis.',
+          '**Mit Zahlungen über Stripe:** Trage deinen Schlüssel in `STRIPE_SECRET_KEY` ein. Teste zuerst mit einem Testschlüssel (`sk_test_…`) und der Testkarte 4242 4242 4242 4242; Zahlungen im Testmodus zählen nicht mehr, sobald ein echter Schlüssel gesetzt ist. Ein Schlüssel hat immer Vorrang vor `FAKE_STRIPE`.',
+        ],
+      },
+      { code: 'FAKE_STRIPE=false\nSTRIPE_SECRET_KEY=sk_test_…\nSTRIPE_WEBHOOK_SECRET=whsec_…\nSTRIPE_PAYMENT_METHODS=card,twint\nPLUS_PRICE=2\nPLUS_CURRENCY=CHF', title: '.env' },
+      { p: 'Empfohlen: Richte im Stripe-Dashboard unter «Developers → Webhooks» einen Webhook auf `https://<deine Adresse>/api/stripe/webhook` ein, mit den Ereignissen `checkout.session.completed` und `checkout.session.async_payment_succeeded`, und trage sein Signing Secret in `STRIPE_WEBHOOK_SECRET` ein. Dann zählen Zahlungen auch, wenn jemand die Bezahlseite schliesst, bevor er zurückkommt.' },
+      { callout: 'Waschplaner verschickt keine Quittungen. Schalte im Stripe-Dashboard die E-Mails für erfolgreiche Zahlungen ein. TWINT braucht die Währung CHF und muss im Dashboard eingeschaltet sein.', tone: 'tip' },
       { h2: 'HTTPS mit Caddy' },
       { p: 'Die Weboberfläche lauscht auf Port 8080, ohne Verschlüsselung. Ein Reverse Proxy davor kümmert sich um HTTPS. Mit [Caddy](https://caddyserver.com) genügt diese Datei; das Zertifikat holt Caddy selbst:' },
       { code: 'waschplaner.example.ch {\n\treverse_proxy localhost:8080\n}', title: 'Caddyfile' },
-      { callout: 'Setze `HTTP_PORT=127.0.0.1:8080`, damit Port 8080 nur für Caddy erreichbar ist. Und vergiss `COOKIE_SECURE=true` und `PUBLIC_URL=https://…` nicht: Die Adresse steht in E-Mails, Kalender- und Einladungslinks.', tone: 'warn' },
+      { callout: 'Setze `HTTP_PORT=127.0.0.1:8080`, damit Port 8080 nur für Caddy erreichbar ist. Und vergiss `COOKIE_SECURE=true` und `PUBLIC_URL=https://…` nicht: Die Adresse steht in E-Mails, Kalender- und Einladungslinks und ist die Rücksprungadresse der Bezahlseite.', tone: 'warn' },
       { h2: 'Nur euer Haus' },
       { p: 'Nachdem du euer Haus erstellt hast, setze `ALLOW_SIGNUP=false` und starte neu. Dann kann niemand sonst auf deinem Server ein Haus anlegen.' },
       { h2: 'E-Mail' },
-      { p: 'Ohne Mailserver gibt es nur Benachrichtigungen in der App, und «Passwort vergessen» funktioniert nicht. Trage die Zugangsdaten deines Mailanbieters ein:' },
+      { p: 'Ohne Mailserver gibt es nur Benachrichtigungen in der App, und «Passwort vergessen» funktioniert nicht. E-Mails an Bewohner:innen gehören zu Plus. Trage die Zugangsdaten deines Mailanbieters ein:' },
       { code: 'SMTP_HOST=smtp.example.ch\nSMTP_PORT=587\nSMTP_USER=waschplaner@example.ch\nSMTP_PASSWORD=…\nSMTP_FROM=Waschplaner <waschplaner@example.ch>', title: '.env' },
       { h2: 'Schutz vor Spam' },
       { p: 'Optional schützt Google reCAPTCHA die öffentlichen Formulare: Anmelden, Haus einrichten, Beitreten und Passwort vergessen. Es ist aus, solange nicht beide Schlüssel gesetzt sind.' },
@@ -179,7 +205,7 @@ export default [
     title: 'Konfiguration',
     summary: 'Alle Einstellungen für einen eigenen Server.',
     blocks: [
-      { p: 'Docker Compose liest die Datei `.env` im Projektordner. Nach einer Änderung übernimmt `docker compose up -d` die neuen Werte.' },
+      { p: 'Docker Compose liest die Datei `.env` im Projektordner. Nach einer Änderung übernimmt `docker compose up -d` die neuen Werte. «Standard» ist der Wert aus `docker-compose.yml`.' },
       { h2: 'Grundlagen' },
       {
         table: {
@@ -192,6 +218,20 @@ export default [
             ['`PUBLIC_URL`', '`http://localhost:8080`', 'Die Adresse, unter der Bewohner:innen Waschplaner öffnen. Steht in E-Mails, Kalender- und Einladungslinks und schützt die Formulare (CSRF).'],
             ['`COOKIE_SECURE`', '`false`', '`true`, sobald Waschplaner über HTTPS läuft.'],
             ['`ALLOW_SIGNUP`', '`true`', '`false`, damit niemand weitere Häuser anlegen kann.'],
+          ],
+        },
+      },
+      { h2: 'Plus und Zahlungen' },
+      {
+        table: {
+          head: ['Variable', 'Standard', 'Bedeutung'],
+          rows: [
+            ['`PLUS_PRICE`', '`2`', 'Preis pro Wohnung und Jahr, z. B. `1` oder `4.50`.'],
+            ['`PLUS_CURRENCY`', '`CHF`', 'Währung als Code, z. B. `CHF` oder `EUR`. Nur Währungen mit zwei Nachkommastellen.'],
+            ['`FAKE_STRIPE`', '`true`', 'Simulierte Bezahlseite im Testmodus; nichts wird abgebucht. `false` und kein Schlüssel: Plus ist ein Schalter, der nichts kostet.'],
+            ['`STRIPE_SECRET_KEY`', '–', 'Stripe-Schlüssel: `sk_test_…` für den Testmodus, `sk_live_…` für echte Zahlungen. Hat Vorrang vor `FAKE_STRIPE`.'],
+            ['`STRIPE_WEBHOOK_SECRET`', '–', 'Signing Secret des Webhooks. Bestätigt Zahlungen auch, wenn niemand von der Bezahlseite zurückkommt.'],
+            ['`STRIPE_PAYMENT_METHODS`', '–', 'Zahlungsarten, z. B. `card,twint`. Leer: was im Stripe-Dashboard eingeschaltet ist.'],
           ],
         },
       },
@@ -230,6 +270,7 @@ export default [
             ['`LISTEN_ADDR`', '`:8080`', 'Adresse, auf der der Server im Container lauscht.'],
             ['`TRUST_PROXY`', '`true`', 'Die Adresse der Besucher:innen aus `X-Forwarded-For` übernehmen. Wichtig für die Begrenzung von Anmeldeversuchen.'],
             ['`AUTH_RATE_LIMIT`', '`10`', 'Wie viele Anmeldungen, Registrierungen und Beitritte eine Adresse pro Minute versuchen darf.'],
+            ['`MAIL_LOG`', '`false`', '`true`: E-Mails ins Log schreiben statt verschicken, zum Entwickeln.'],
           ],
         },
       },
@@ -242,7 +283,7 @@ export default [
     title: 'Begriffe',
     summary: 'Die Wörter, die Waschplaner verwendet, auf Deutsch und Englisch.',
     blocks: [
-      { p: 'Waschplaner verwendet überall dieselben Wörter. Hier stehen sie auf Deutsch und Englisch.' },
+      { p: 'Waschplaner verwendet überall dieselben Wörter. Hier stehen sie auf Deutsch und Englisch, den Sprachen der App.' },
       {
         table: {
           head: ['Deutsch', 'English', 'Bedeutung'],
@@ -266,6 +307,11 @@ export default [
             ['Maschine', 'Machine', 'Waschmaschine, Tumbler oder Trockenraum.'],
             ['Zugangscode', 'Access code', 'Die 6 Ziffern auf der Karte einer Wohnung, zum Beitreten.'],
             ['Aushang', 'Poster', 'Die gedruckte Seite mit dem QR-Code des Hauses.'],
+            ['Gratis', 'Free', 'Der Plan ohne Plus: Die Verwaltung erstellt ihn und druckt ihn aus, bis zu {printFree} Wochen am Stück.'],
+            ['Plus', 'Plus', 'Alle nutzen den Plan online, mit E-Mails, Kalender-Abo und öffentlicher Plan-Ansicht.'],
+            ['Öffentliche Plan-Ansicht', 'Public schedule view', 'Der Plan ohne Anmeldung, für einen Bildschirm in der Waschküche.'],
+            ['Kaufen, verlängern', 'Buy, renew', 'Ein Jahr Plus bezahlen; verlängern hängt ein Jahr an.'],
+            ['Bezahlseite', 'Payment page', 'Die Seite von Stripe, auf der die Verwaltung bezahlt.'],
           ],
         },
       },
