@@ -1,7 +1,7 @@
 # Waschplaner website
 
-The public website for [Waschplaner](../waschplan): what it is, pricing (Free, Plus, self-hosted), help pages for
-residents and administrators, and the self-hosting guide. The app itself lives in `../waschplan` and is
+The public website for [Waschplaner](../waschplan): what it is, pricing (Free, Plus, self-hosted), help pages, and
+**the planner** (`/planner`): the app's setup wizard, schedule editor and print layout running entirely in the browser. The app itself lives in `../waschplan` and is
 designed separately; this site only links to it.
 
 - **Stack:** Vue 3 + Vue Router + Vite, served by nginx. Same tooling as the app (ESLint with the Vue style guide, Vitest).
@@ -10,8 +10,7 @@ designed separately; this site only links to it.
   components. The rules in the app's `frontend/DESIGN.md` and the words in its `frontend/GLOSSARY.md` apply here too.
   Change shared styles in the app first, then copy them over.
 - **Languages:** German (Swiss spelling, "du"), English (British spelling), French (Swiss French, "vous") and
-  Italian ("tu"). The app itself is only in German and English, so the French and Italian pages say so, quote
-  buttons with their English label («Book») and show the demo plan with the app's English words.
+  Italian ("tu"), like the app.
 
 ## Run it
 
@@ -20,7 +19,7 @@ docker compose up -d --build     # works out of the box
 open http://localhost:8081
 ```
 
-The links to the hosted app, the repository and the contact address are baked in at build time. To change them,
+The links, the contact address and the operator's details are baked in at build time. To change them,
 `cp .env.example .env`, edit, and run `docker compose up -d --build` again.
 
 | Variable | Default | Meaning |
@@ -28,7 +27,35 @@ The links to the hosted app, the repository and the contact address are baked in
 | `VITE_APP_URL` | `https://app.waschplaner.com` | The hosted app ("Haus einrichten" → `/setup`, "Anmelden" → `/login`) |
 | `VITE_REPO_URL` | `https://github.com/waschplaner/waschplaner` | Source code (self-hosting guide, footer) |
 | `VITE_CONTACT_EMAIL` | `hallo@waschplaner.com` | Support and legal contact |
+| `VITE_OPERATOR_NAME` | – | Legal name for the Impressum and privacy policy. A sole proprietorship's must contain the surname (Art. 945 OR) |
+| `VITE_OPERATOR_ADDRESS` | – | Postal address without the country, lines separated by `\|` |
+| `VITE_OPERATOR_UID` | – | UID if registered in the commercial register; empty shows "not registered" |
 | `WEB_PORT` | `8081` | Port on the host (8081, so it can run next to the app on 8080) |
+
+**The operator's details are never committed.** They live in `.env` (ignored by git) and in the repository
+variables of the release workflow. They reach the pages base64-encoded (`vite.config.js` → `OPERATOR` in
+`src/site.js`), so tools scanning the files for names and e-mail addresses find nothing. That keeps off
+harvesters, not people: visitors and scripts that run the page still see the Impressum. The Impressum and the
+privacy policy also ask search engines not to index or archive them (a robots tag in `LegalView.vue` and an
+`X-Robots-Tag` header in `nginx.conf`). The remaining values of the legal texts (providers, retention periods, date)
+are in `LEGAL` in `src/site.js`.
+
+## The planner (browser only)
+
+`src/planner/` holds the app's wizard (house, laundry room, times, regular schedule) and print layout, copied from
+the app's `frontend/src` and adapted. **Nothing is sent to a server:** the plan for any range of days is computed in
+the browser (`lib/localBoard.js`, the same recurrence rules as the app), kept in `localStorage`
+(`draft.js`), and can be saved to and opened from a file. It prints up to a whole year (26 A4 pages) and lets
+single days differ from the regular schedule (tap a time slot in the preview).
+
+- `lib/` (dates, recurrence, plan, slot layouts, print sheets) and `components/` are copies of the app's; their
+  tests come along, including the recurrence cases shared with the Go backend (`lib/testdata`).
+- Texts: `i18n/app.<lang>.js` are generated from the app's i18n with `node scripts/sync-planner-texts.mjs` (re-run
+  when the app's texts change); `i18n/<lang>.js` holds the planner's own texts and where it says something else
+  than the app (no account, five steps).
+
+`ONLINE_AVAILABLE` in `src/site.js` is `false` until the online version exists: the header leads to the planner,
+and Plus, self-hosting and the help pages about them are shown greyed out as "coming later".
 
 ## Releases and deployment
 
@@ -95,7 +122,10 @@ the house is on Free again and nothing is deleted. Self-hosted, Plus is a free s
 
 ## Before going live
 
-- Fill in the `[placeholders]` in `src/content/legal.js` (operator, address, providers, retention days, date).
+- Set `VITE_OPERATOR_*` (and `VITE_CONTACT_EMAIL`) as repository variables and fill in `LEGAL` in `src/site.js`.
+  A release stops while anything is missing: the release workflow runs `src/content/legal.release.test.js`
+  with `RELEASE_CHECK=1` (locally: `RELEASE_CHECK=1 npm test`).
+- Configure the server to match `LEGAL.logDays` and `LEGAL.deleteDays`: log rotation and backup rotation.
 - Set the real URLs and contact address (see above).
 - Keep `PRICE_PER_FLAT` and `PLUS_TERMS` in `src/site.js` in line with the hosted app's `PLUS_PRICE`,
   `PLUS_CURRENCY` and `backend/internal/api/plus.go`, and "card or TWINT" in the texts with its `STRIPE_PAYMENT_METHODS`.

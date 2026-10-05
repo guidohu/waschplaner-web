@@ -5,6 +5,7 @@ import BaseIcon from '../../components/BaseIcon.vue'
 import { usePageTitle } from '../../composables/usePageTitle'
 import { DOC_SECTIONS, docPages } from '../../content'
 import { t } from '../../i18n'
+import { ONLINE_AVAILABLE } from '../../site'
 
 usePageTitle(() => t('docs.title'))
 const groups = computed(() =>
@@ -24,7 +25,7 @@ const groups = computed(() =>
         <RouterLink v-for="p in g.pages" :key="p.slug" :to="`/docs/${p.slug}`" class="doc-card">
           <span class="icon-tile"><BaseIcon :name="p.icon" :size="22" /></span>
           <span class="doc-card-text">
-            <b>{{ p.title }}</b>
+            <b>{{ p.title }} <span v-if="p.later && !ONLINE_AVAILABLE" class="badge">{{ $t('common.later') }}</span></b>
             <span class="muted small">{{ p.summary }}</span>
           </span>
           <BaseIcon name="chevron-right" :size="18" class="doc-card-arrow" />

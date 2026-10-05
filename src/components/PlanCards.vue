@@ -1,21 +1,24 @@
 <script setup>
-// The three ways to use Waschplaner side by side: Free, Plus and self-hosted.
+// The three ways to use Waschplaner side by side: Free (the planner in the
+// browser), Plus and self-hosted. Until the online version exists (ONLINE_AVAILABLE),
+// Plus and self-hosting are shown greyed out as "coming later".
 import BaseIcon from './BaseIcon.vue'
 import { tm } from '../i18n'
-import { appLink } from '../site'
+import { ONLINE_AVAILABLE, appLink } from '../site'
 
 const PLANS = [
-  { key: 'free', icon: 'home', href: appLink('/setup') },
+  { key: 'free', icon: 'print', to: '/planner', featured: !ONLINE_AVAILABLE },
   // The app preselects Plus (its free trial) in the wizard's last step.
-  { key: 'plus', icon: 'users', href: appLink('/setup?plan=plus'), featured: true },
-  { key: 'self', icon: 'server', to: '/docs/self-hosting' },
+  { key: 'plus', icon: 'users', href: appLink('/setup?plan=plus'), featured: ONLINE_AVAILABLE, later: !ONLINE_AVAILABLE },
+  { key: 'self', icon: 'server', to: '/docs/self-hosting', later: !ONLINE_AVAILABLE },
 ]
 </script>
 
 <template>
   <div class="plans">
-    <article v-for="p in PLANS" :key="p.key" class="plan card" :class="{ featured: p.featured }">
-      <span v-if="p.featured" class="badge plan-badge"><BaseIcon name="gift" :size="14" /> {{ $t(`pricing.plans.${p.key}.badge`) }}</span>
+    <article v-for="p in PLANS" :key="p.key" class="plan card" :class="{ featured: p.featured, later: p.later }" :aria-disabled="p.later || undefined">
+      <span v-if="p.later" class="badge plan-badge later-badge"><BaseIcon name="clock" :size="14" /> {{ $t('common.later') }}</span>
+      <span v-else-if="p.featured" class="badge plan-badge"><BaseIcon :name="p.key === 'plus' ? 'gift' : 'shield'" :size="14" /> {{ $t(`pricing.plans.${p.key}.badge`) }}</span>
       <div class="plan-head">
         <span class="icon-tile"><BaseIcon :name="p.icon" :size="22" /></span>
         <div>
@@ -34,7 +37,10 @@ const PLANS = [
           <span>{{ point }}</span>
         </li>
       </ul>
-      <RouterLink v-if="p.to" :to="p.to" class="btn ghost block">
+      <span v-if="p.later" class="btn ghost block" aria-disabled="true">
+        <BaseIcon name="clock" :size="18" /> {{ $t('common.later') }}
+      </span>
+      <RouterLink v-else-if="p.to" :to="p.to" class="btn block" :class="{ ghost: !p.featured }">
         {{ $t(`pricing.plans.${p.key}.cta`) }} <BaseIcon name="arrow-right" :size="18" />
       </RouterLink>
       <a v-else :href="p.href" class="btn block" :class="p.featured ? 'gift' : 'ghost'">
@@ -52,6 +58,12 @@ const PLANS = [
 .card + .card { margin-top: 0; }
 .plan.featured { border: 2px solid var(--primary); box-shadow: 0 0 0 4px var(--primary-soft), var(--shadow); }
 .plan-badge { position: absolute; top: -0.75rem; right: 1.25rem; background: var(--gift); color: var(--on-strong); }
+.plan.featured:not(.later) .plan-badge:not(.later-badge) { background: var(--ok); }
+/* Not available yet: readable, but clearly not on offer. */
+.plan.later { background: var(--surface-2); box-shadow: none; }
+.plan.later > :not(.plan-badge) { opacity: 0.55; filter: grayscale(1); }
+.plan.later .later-badge { background: var(--surface-3); color: var(--text-2); }
+.plan.later .btn { cursor: not-allowed; pointer-events: none; }
 .plan-head { display: flex; align-items: center; gap: 0.75rem; }
 .plan-head h3 { margin: 0; font-size: 1.25rem; line-height: 1.2; }
 .plan-price { display: flex; flex-direction: column; margin: 0; }

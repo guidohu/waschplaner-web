@@ -2,7 +2,41 @@
 // and English, so buttons are quoted with their English label, «Book».
 export default [
   {
+    slug: 'planner',
+    section: 'use',
+    icon: 'print',
+    title: 'Creare un piano nel browser',
+    summary: 'Il tuo piano della lavanderia in cinque passi – senza account, e tutto resta nel tuo browser.',
+    blocks: [
+      { p: 'Con il [pianificatore](/planner) crei il piano della lavanderia direttamente nel browser e lo stampi. Non ti servono né un account né un indirizzo e-mail.' },
+      { callout: 'Tutto ciò che inserisci resta nel tuo browser. Il pianificatore non invia niente a un server – nemmeno a noi.', tone: 'privacy' },
+      { h2: 'I cinque passi' },
+      {
+        steps: [
+          { title: 'Palazzo', text: 'Il nome del palazzo e gli appartamenti. «Compila in fretta» crea nomi come «Pianterreno sinistra, Pianterreno destra». Tocca un punto per cambiare il colore di un appartamento.' },
+          { title: 'Lavanderia', text: 'Quante lavatrici, asciugatrici e locali di asciugatura ci sono, e se si usano insieme, separatamente o in modo misto.' },
+          { title: 'Orari', text: 'I giorni di bucato e come una giornata è divisa in fasce orarie.' },
+          { title: 'Turni fissi', text: 'Chi ha quale fascia oraria regolarmente: ogni settimana, ogni qualche settimana o una volta al mese. Prima il pianificatore chiede dopo quante settimane il piano si ripete e quanto tempo deve restare libero per i bucati spontanei. Poi propone una distribuzione equa: i turni di un appartamento restano insieme e il tempo libero è distribuito sulla settimana. Puoi trascinare le fasce o distribuirle con «Dipingi». Tocca un appartamento per dargli una fascia oraria – regolarmente o «Solo in una data», per esempio il 1° agosto.' },
+          { title: 'Stampa', text: 'Due settimane per pagina A4, fino a un anno intero, per ogni macchina o locale. Dalla finestra di stampa puoi anche salvare il piano in PDF.' },
+        ],
+      },
+      { h2: 'Modificare singoli giorni' },
+      { p: 'Se un giorno è diverso, per esempio per le vacanze o una riparazione, dai all’appartamento una fascia «Solo in una data» nei turni fissi, oppure tocca la fascia oraria nell’anteprima e scegli un altro appartamento o «Libera». I giorni modificati sono incorniciati nell’anteprima; sulla carta si vede solo il risultato.' },
+      { h2: 'Salvare e continuare più tardi' },
+      {
+        list: [
+          'Il piano resta salvato nel tuo browser. Se riapri il pianificatore nello stesso browser, lo ritrovi.',
+          '**Salva come file** conserva il piano sul tuo dispositivo. Con **Apri un file** continui a modificarlo più tardi, anche su un altro dispositivo.',
+          '**Ricomincia** cancella tutto in questo browser.',
+        ],
+      },
+      { h2: 'Cosa arriva dopo' },
+      { p: 'Più avanti ci sarà una versione online in cui tutto il palazzo prenota, scambia e disdice da sé. Fino ad allora il piano è appeso su carta in lavanderia. [Scopri di più](/pricing)' },
+    ],
+  },
+  {
     slug: 'setup',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'wand',
     title: 'Configurare uno stabile',
@@ -34,6 +68,7 @@ export default [
   },
   {
     slug: 'residents',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'users',
     title: 'Per i residenti',
@@ -82,6 +117,7 @@ export default [
   },
   {
     slug: 'admin',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'sliders',
     title: 'Per l’amministrazione',
@@ -134,6 +170,7 @@ export default [
   },
   {
     slug: 'self-hosting',
+    later: true, // describes the online version or self-hosting
     section: 'run',
     icon: 'server',
     title: 'Self-hosting',
@@ -198,6 +235,7 @@ export default [
   },
   {
     slug: 'configuration',
+    later: true, // describes the online version or self-hosting
     section: 'run',
     icon: 'terminal',
     title: 'Configurazione',

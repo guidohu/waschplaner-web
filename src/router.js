@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   { path: '/', name: 'home', component: () => import('./views/HomeView.vue') },
   { path: '/pricing', name: 'pricing', component: () => import('./views/PricingView.vue') },
+  // The planner runs entirely in the browser; its sticky action bar replaces the footer.
+  { path: '/planner', alias: '/planer', name: 'planner', component: () => import('./planner/PlannerView.vue'), meta: { hideFooter: true } },
   {
     path: '/docs',
     component: () => import('./views/docs/DocsLayout.vue'),

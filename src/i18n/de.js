@@ -5,13 +5,14 @@
 // and {email} are filled in from site.js.
 export default {
   common: {
+    later: 'Kommt später', laterPlus: 'Später mit Plus',
     language: 'Sprache', decrease: 'Weniger', increase: 'Mehr', copy: 'Kopieren', copied: 'Kopiert',
     soon: 'Bald', included: 'Enthalten', notIncluded: 'Nicht enthalten', learnMore: 'Mehr erfahren',
     free: 'Gratis', plus: 'Plus',
   },
   nav: {
     features: 'Funktionen', pricing: 'Preise', selfHost: 'Selbst hosten', docs: 'Hilfe',
-    login: 'Anmelden', start: 'Haus einrichten', menu: 'Menü', close: 'Schliessen', skip: 'Zum Inhalt springen',
+    login: 'Anmelden', start: 'Plan erstellen', menu: 'Menü', close: 'Schliessen', skip: 'Zum Inhalt springen',
     main: 'Hauptnavigation', home: 'Waschplaner – zur Startseite',
   },
   footer: {
@@ -26,9 +27,13 @@ export default {
     hero: {
       eyebrow: 'Für Mehrfamilienhäuser mit gemeinsamer Waschküche',
       title: 'Wer wann wäscht – klar geregelt.',
-      text: 'Feste Zeiten wie Termine im Kalender, fair verteilt und in fünf Minuten eingerichtet. Druck den Plan gratis für die Waschküche aus – oder lass mit Plus alle Bewohner:innen online buchen.',
-      start: 'Haus gratis einrichten', selfHost: 'Selbst hosten',
-      facts: ['In 5 Minuten eingerichtet', 'Gratis zum Ausdrucken', '{trial} Tage Plus geschenkt'],
+      text: 'Feste Zeiten wie Termine im Kalender, fair verteilt und in fünf Minuten erstellt. Druck den Plan für ein ganzes Jahr aus – gratis, ohne Konto, und deine Eingaben verlassen deinen Browser nicht.',
+      start: 'Plan gratis erstellen', more: 'Funktionen ansehen',
+      facts: [
+        'In 5 Minuten erstellt',
+        'Ohne Konto',
+        'Bleibt in deinem Browser',
+      ],
     },
     demo: {
       house: 'Musterweg 12', navPlan: 'Plan', navMine: 'Meine Wäsche', range: '21.–25. Sept.', date: '{d}.',
@@ -36,28 +41,28 @@ export default {
       done: 'fertig', freeFrom: 'Frei ab {time}', bookRest: 'Rest buchen', mine: 'Deine Wohnung: {name}',
       days: ['Mo', 'Di', 'Mi', 'Do', 'Fr'],
       flats: ['EG links', 'EG rechts', '1. OG links', '1. OG rechts', '2. OG'],
-      hint: 'So nutzen alle den Plan mit Plus. Probier es aus: Tippe auf «Buchen» oder auf ein Zeitfenster deiner Wohnung.',
+      hint: 'So wird die Online-Version aussehen, in der alle selbst buchen – sie kommt später. Probier es aus: Tippe auf «Buchen» oder auf ein Zeitfenster deiner Wohnung.',
       booked: 'Gebucht: {when}', freed: 'Freigegeben: {when}',
       label: 'Beispiel eines Waschplans mit fünf Wohnungen',
     },
     steps: {
       eyebrow: 'So funktioniert’s',
       title: 'In drei Schritten zum Waschplan',
-      text: 'Die Verwaltung richtet das Haus einmal ein. Danach hängt der Plan in der Waschküche – oder alle nutzen ihn online.',
+      text: 'Du erstellst den Plan einmal im Browser und hängst ihn in die Waschküche. Später sollen ihn alle auch online nutzen können.',
       items: [
-        { icon: 'wand', title: 'Haus einrichten', text: 'Ein Assistent fragt in sechs kurzen Schritten nach Wohnungen, Maschinen und Zeiten und schlägt einen fairen festen Plan vor.' },
-        { icon: 'print', title: 'Ausdrucken', text: 'Zwei Wochen pro A4-Seite, für jede Maschine oder jeden Raum. Änderst du etwas, druckst du einfach neu. Gratis bis zu {printFree} Wochen am Stück, mit Plus ein ganzes Jahr.' },
-        { icon: 'users', title: 'Online für alle', text: 'Mit Plus scannen die Bewohner:innen den QR-Code auf dem Aushang und buchen, tauschen und sagen selbst ab.' },
+        { icon: 'wand', title: 'Plan erstellen', text: 'Ein Assistent fragt in fünf kurzen Schritten nach Wohnungen, Maschinen und Zeiten und schlägt einen fairen festen Plan vor. Alles bleibt in deinem Browser.' },
+        { icon: 'print', title: 'Ausdrucken', text: 'Zwei Wochen pro A4-Seite, bis zu einem ganzen Jahr, für jede Maschine oder jeden Raum. Einzelne Tage änderst du direkt in der Vorschau.' },
+        { icon: 'users', title: 'Online für alle', text: 'Mit Plus sollen die Bewohner:innen den QR-Code auf dem Aushang scannen und selbst buchen, tauschen und absagen.', later: true },
       ],
     },
     features: {
       eyebrow: 'Funktionen',
       title: 'Alles, was eine gemeinsame Waschküche braucht',
-      text: 'Gratis für die Verwaltung, mit Plus für alle im Haus.',
+      text: 'Gratis im Browser – und später mit Plus online für alle im Haus.',
       items: {
-        plan: { title: 'Fester Plan wie im Kalender', text: 'Jeden Dienstag, alle 2 Wochen oder am ersten Montag im Monat – wie wiederkehrende Termine. Der Assistent verteilt die Zeit fair.' },
+        plan: { title: 'Fester Plan wie im Kalender', text: 'Jeden Dienstag, alle 2 Wochen oder am ersten Montag im Monat – wie wiederkehrende Termine. Der Assistent verteilt die Zeit fair und lässt so viel frei, wie ihr für spontanes Waschen wollt.' },
         rooms: { title: 'Eure Waschküche, wie sie ist', text: 'Waschmaschinen, Tumbler und Trockenräume: zusammen als Waschküche, einzeln oder gemischt gebucht. Mit eigenen Zeiten pro Tag.' },
-        print: { title: 'Zum Aufhängen ausdrucken', text: 'Zwei Wochen pro A4-Seite, pro Maschine oder Raum. Gratis bis zu {printFree} Wochen am Stück, mit Plus ein ganzes Jahr. Im Druckfenster speicherst du den Plan auch als PDF.' },
+        print: { title: 'Zum Aufhängen ausdrucken', text: 'Zwei Wochen pro A4-Seite, pro Maschine oder Raum, bis zu einem ganzen Jahr. Im Druckfenster speicherst du den Plan auch als PDF.' },
         book: { title: 'Buchen mit einem Tipp', text: 'Freie Zeitfenster bucht jede Wohnung selbst, so oft die Hausregeln es erlauben. Eigene gibt sie frei oder verschiebt sie.' },
         finish: { title: 'Fertig – Rest freigeben', text: 'Früher fertig? Ein Tipp, und der Rest des Zeitfensters ist für alle frei. Zurücknehmen geht, solange niemand bucht.' },
         takeover: { title: 'Faire Regeln fürs Übernehmen', text: 'Wer nicht erscheint, kann sein Zeitfenster nach einer Wartezeit verlieren. Einchecken schützt es. Die betroffene Wohnung wird benachrichtigt.' },
@@ -71,32 +76,32 @@ export default {
       text: 'Waschplaner ist für Menschen gemacht, die sich nicht mit Technik beschäftigen wollen.',
       items: [
         { icon: 'text-size', title: 'Grosse Schrift auf Wunsch', text: 'Normal, Gross oder Sehr gross, pro Gerät. Grosse Tasten und klare Wörter statt Fachbegriffen.' },
-        { icon: 'qr', title: 'Ohne Passwort', text: 'QR-Code scannen, Zugangscode eingeben, fertig. Ein Passwort braucht nur, wer sich auf weiteren Geräten anmelden will.' },
-        { icon: 'shield', title: 'Nur die Daten, die der Plan braucht', text: 'Wohnungen heissen «EG links», nicht «Familie Muster». Vornamen reichen, die E-Mail dient nur zum Anmelden.' },
-        { icon: 'globe', title: 'Deutsch und English', text: 'Die App gibt es auf Deutsch und Englisch; jede Person wählt ihre Sprache selbst. Und wer nicht online ist, liest den Plan auf Papier.' },
+        { icon: 'lock', title: 'Ohne Konto', text: 'Kein Konto, keine E-Mail, kein Passwort. Du erstellst den Plan direkt im Browser, und deine Eingaben verlassen ihn nicht.' },
+        { icon: 'shield', title: 'Nur die Daten, die der Plan braucht', text: 'Wohnungen heissen «EG links», nicht «Familie Muster». Was du eingibst, bleibt auf deinem Gerät.' },
+        { icon: 'globe', title: 'Vier Sprachen', text: 'Deutsch, Français, Italiano und English – jede Person wählt ihre Sprache selbst. Und wer nicht online ist, liest den Plan auf Papier.' },
       ],
     },
     ways: {
-      eyebrow: 'Gratis oder Plus',
-      title: 'Auf Papier gratis, online mit Plus',
-      text: 'Gratis druckst du den Plan aus. Mit Plus nutzen ihn alle Bewohner:innen online – {trial} Tage geschenkt, danach {price} Franken pro Wohnung und Jahr. Oder ihr betreibt Waschplaner selbst.',
+      eyebrow: 'Heute und später',
+      title: 'Heute gratis im Browser, später online für alle',
+      text: 'Den Plan erstellst und druckst du schon heute gratis im Browser. Die Online-Version, in der alle selbst buchen, kommt später als Plus – für {price} Franken pro Wohnung und Jahr.',
       compare: 'Alle Funktionen vergleichen',
     },
     faq: {
       title: 'Häufige Fragen',
       items: [
-        { q: 'Was ist der Unterschied zwischen Gratis und Plus?', a: 'Mit Gratis erstellt die Verwaltung den Plan, ändert einzelne Tage und druckt ihn für die Waschküche aus, bis zu {printFree} Wochen am Stück. Mit Plus nutzen ihn alle Bewohner:innen online: buchen, freigeben, übernehmen – mit E-Mails und Kalender-Abo. Ausdrucken kannst du dann ein ganzes Jahr auf einmal. [Preise vergleichen](/pricing)' },
-        { q: 'Muss man eine App installieren?', a: 'Nein. Waschplaner läuft im Browser, auf Handy, Tablet und Computer. Wer möchte, legt ihn mit «Als App installieren» oder «Zum Home-Bildschirm» aufs Handy.' },
-        { q: 'Brauchen alle Bewohner:innen ein Smartphone?', a: 'Nein. Mit Plus genügt jeder Browser, und die Verwaltung kann für jede Wohnung buchen. Ohne Plus hängt der Plan ohnehin auf Papier in der Waschküche.' },
-        { q: 'Was passiert, wenn jemand sein Zeitfenster nicht nutzt?', a: 'Das legt ihr in den Regeln fest: Andere dürfen es nach einer Wartezeit übernehmen (Standard), jederzeit oder nie. Wer eingecheckt hat, behält sein Zeitfenster immer.' },
-        { q: 'Kann ich Waschplaner selbst betreiben?', a: 'Ja. Der Quellcode ist öffentlich. Mit Docker läuft Waschplaner auf deinem eigenen Server, mit allen Funktionen, und Plus schaltest du dort gratis ein. [Zur Anleitung](/docs/self-hosting)' },
-        { q: 'Gibt es Waschplaner auf Französisch oder Italienisch?', a: 'Diese Website ja. Die App selbst gibt es zurzeit auf Deutsch und Englisch.' },
-        { q: 'Wo liegen unsere Daten?', a: 'Beim gehosteten Waschplaner auf unserem Server, beim selbst betriebenen auf eurem. Wir speichern nur, was der Plan braucht, und geben nichts weiter. [Datenschutz](/privacy)' },
+        { q: 'Was kostet der Planer?', a: 'Nichts. Du erstellst den Plan im Browser und druckst ihn für bis zu ein Jahr aus – gratis und ohne Konto. Die Online-Version kommt später als Plus. [Preise ansehen](/pricing)' },
+        { q: 'Wo bleiben meine Eingaben?', a: 'Nur in deinem Browser. Der Planer schickt nichts an einen Server – auch nicht an uns. Willst du den Plan auf einem anderen Gerät weiter bearbeiten, speicherst du ihn als Datei.' },
+        { q: 'Kann ich den Plan später ändern?', a: 'Ja. Im selben Browser ist er beim nächsten Besuch noch da, sonst öffnest du die gespeicherte Datei. Einzelne Tage änderst du in der Vorschau; danach druckst du einfach neu.' },
+        { q: 'Brauchen alle Bewohner:innen ein Smartphone?', a: 'Nein. Der Plan hängt auf Papier in der Waschküche. Mit Plus sollen ihn später alle auch online nutzen können – freiwillig.' },
+        { q: 'Kann ich Waschplaner selbst betreiben?', a: 'Das kommt später, zusammen mit der Online-Version.' },
+        { q: 'Gibt es Waschplaner auf Französisch oder Italienisch?', a: 'Ja. Die Website und der Planer gibt es auf Deutsch, Französisch, Italienisch und Englisch.' },
+        { q: 'Wann kommt die Online-Version?', a: 'Wir arbeiten daran. Mit Plus sollen alle im Haus den Plan online nutzen, buchen und tauschen – für {price} Franken pro Wohnung und Jahr. Bis dahin ist der Planer im Browser gratis.' },
       ],
     },
     cta: {
       title: 'Bereit für einen entspannten Waschtag?',
-      text: 'Richte euren Waschplan in fünf Minuten ein: gratis zum Ausdrucken, mit {trial} Tagen Plus geschenkt.',
+      text: 'Erstelle euren Waschplan in fünf Minuten: gratis, ohne Konto und direkt in deinem Browser.',
     },
   },
 
@@ -104,20 +109,27 @@ export default {
     title: 'Preise',
     head: {
       eyebrow: 'Preise',
-      title: 'Auf Papier gratis. Online für alle mit Plus.',
-      text: 'Plus kostet {price} Franken pro Wohnung und Jahr, und die ersten {trial} Tage sind geschenkt. Kein Abo, keine Kosten pro Person und keine Grenze bei Wohnungen oder Maschinen.',
+      title: 'Heute gratis im Browser. Später online für alle mit Plus.',
+      text: 'Den Plan erstellst und druckst du schon heute gratis und ohne Konto. Die Online-Version mit Plus und das Selbst-Hosten kommen später; die Preise unten gelten dann.',
     },
     plans: {
       free: {
-        name: 'Gratis', tag: 'Zum Ausdrucken', price: 'CHF 0', unit: 'für immer', cta: 'Haus gratis einrichten',
-        text: 'Die Verwaltung erstellt den Plan und druckt ihn für die Waschküche aus.',
-        points: ['Ein Haus, beliebig viele Wohnungen und Maschinen', 'Einrichtung in sechs Schritten, mit fairem festem Plan', 'Einzelne Tage ändern', 'Ausdrucken: bis zu {printFree} Wochen am Stück, auch als PDF', 'Bewohner:innen brauchen kein Konto'],
+        name: 'Gratis', tag: 'Im Browser', badge: 'Jetzt verfügbar', price: 'CHF 0', unit: 'ohne Konto', cta: 'Plan jetzt erstellen',
+        text: 'Erstelle den Plan direkt im Browser und druck ihn aus. Deine Eingaben verlassen deinen Browser nicht.',
+        points: [
+          'Ohne Konto und ohne E-Mail',
+          'Deine Eingaben bleiben im Browser',
+          'Fester Plan mit fairem Vorschlag',
+          'Einzelne Tage ändern',
+          'Ein ganzes Jahr ausdrucken, auch als PDF',
+          'Als Datei speichern und später weiter bearbeiten',
+        ],
       },
       plus: {
         name: 'Plus', tag: 'Online für alle', price: 'CHF {price}', unit: 'pro Wohnung und Jahr', cta: '{trial} Tage gratis testen',
         badge: '{trial} Tage geschenkt',
         text: 'Alle Bewohner:innen nutzen den Plan online – und der Server erledigt den Rest.',
-        points: ['Alles aus Gratis', 'Ein ganzes Jahr auf einmal ausdrucken', 'Einladen mit QR-Code und Zugangscodes', 'Buchen, freigeben, übernehmen, verschieben, einchecken', 'E-Mail bei Änderungen und Kalender-Abo', 'Öffentliche Plan-Ansicht für die Waschküche', 'Kein Abo: verlängert sich nicht von selbst'],
+        points: ['Alles aus Gratis', 'Einladen mit QR-Code und Zugangscodes', 'Buchen, freigeben, übernehmen, verschieben, einchecken', 'E-Mail bei Änderungen und Kalender-Abo', 'Öffentliche Plan-Ansicht für die Waschküche', 'Kein Abo: verlängert sich nicht von selbst'],
       },
       self: {
         name: 'Selbst hosten', tag: 'Dein Server', price: 'CHF 0', unit: 'auf deinem Server', cta: 'Zur Anleitung',
@@ -131,7 +143,13 @@ export default {
       text: 'Einen Plan erstellen und ausdrucken braucht kaum Rechenzeit. Sobald alle online buchen, arbeitet der Server für jede Wohnung, rund um die Uhr. Darum kostet Plus pro Wohnung – und nur so viel, wie es braucht.',
       free: {
         title: 'Gratis: für die Verwaltung', tag: 'Gratis',
-        items: ['Das Haus in sechs Schritten einrichten', 'Feste Zeiten fair verteilen', 'Einzelne Tage ändern', 'Bis zu {printFree} Wochen am Stück ausdrucken', 'Alles bleibt gespeichert'],
+        items: [
+          'Den Plan in fünf Schritten erstellen',
+          'Feste Zeiten fair verteilen',
+          'Einzelne Tage ändern',
+          'Ein ganzes Jahr ausdrucken',
+          'Alles bleibt in deinem Browser',
+        ],
       },
       plus: {
         title: 'Plus: für alle im Haus', tag: 'Plus',
@@ -145,7 +163,7 @@ export default {
       },
     },
     journey: {
-      eyebrow: 'So funktioniert Plus',
+      eyebrow: 'So wird Plus funktionieren',
       title: 'Testen, kaufen, verlängern – ohne Abo',
       text: 'Die Verwaltung kauft Plus für ein Jahr. Nichts verlängert sich von selbst, und niemand wird überrascht.',
       steps: [
@@ -170,7 +188,7 @@ export default {
       },
       rows: {
         house: 'Ein Haus mit beliebig vielen Wohnungen und Maschinen',
-        wizard: 'Einrichtung in sechs Schritten mit fairem festem Plan',
+        wizard: 'Einrichtung mit fairem festem Plan',
         edit: 'Einzelne Tage ändern',
         print: 'Ausdrucken (zwei Wochen pro A4-Seite)',
         join: 'Einladen mit QR-Code und Zugangscodes',
@@ -199,6 +217,7 @@ export default {
     faq: {
       title: 'Fragen zu Preis und Bezahlung',
       items: [
+        { q: 'Wann kommt Plus?', a: 'Wir arbeiten daran. Bis dahin erstellst und druckst du den Plan gratis im Browser – ohne Konto. [Plan erstellen](/planner)' },
         { q: 'Wer bezahlt Plus?', a: 'Die Verwaltung, für das ganze Haus. Bewohner:innen zahlen nie etwas und geben nirgends Zahlungsangaben ein.' },
         { q: 'Wie werden die Wohnungen gezählt?', a: 'Bezahlt wird für die aktiven Wohnungen. Kommt während des Jahres eine dazu, bezahlst du ihren Anteil bis zum Ende des Jahres, bevor sie startet (mindestens CHF {min}). Alle anderen merken davon nichts.' },
         { q: 'Verlängert sich Plus von selbst?', a: 'Nein, Plus ist kein Abo. {remind} Tage vor dem Ende erinnern wir dich per E-Mail. Verlängerst du in den letzten {renew} Tagen, beginnt das neue Jahr erst, wenn das alte endet.' },
@@ -210,6 +229,7 @@ export default {
   },
 
   docs: {
+    later: 'Diese Seite beschreibt die Online-Version. Sie kommt später – heute erstellst du den Plan [im Browser](/planner).',
     appLanguage: 'Die App gibt es auf Deutsch und Englisch.',
     title: 'Hilfe & Dokumentation',
     intro: 'Wie ihr Waschplaner einrichtet, im Alltag nutzt und selbst betreibt.',

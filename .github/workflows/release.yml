@@ -3,10 +3,11 @@
 #
 #   git tag v1.0.0 && git push origin v1.0.0
 #
-# The image gets the tags 1.0.0, 1.0, 1 and latest. The links baked into the
-# site come from the repository variables VITE_APP_URL, VITE_REPO_URL and
-# VITE_CONTACT_EMAIL (Settings → Secrets and variables → Actions → Variables);
-# without them the defaults in src/site.js apply.
+# The image gets the tags 1.0.0, 1.0, 1 and latest. What is baked into the site
+# comes from repository variables (Settings → Secrets and variables → Actions →
+# Variables): VITE_APP_URL, VITE_REPO_URL, VITE_CONTACT_EMAIL, and the operator's
+# VITE_OPERATOR_NAME, VITE_OPERATOR_ADDRESS and VITE_OPERATOR_UID. The release
+# stops if the Impressum or privacy policy would still have a gap.
 name: Release
 
 on:
@@ -29,7 +30,14 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run lint
-      - run: npm test
+      - name: Tests, including the check that the legal pages are complete
+        run: npm test
+        env:
+          RELEASE_CHECK: 1
+          VITE_CONTACT_EMAIL: ${{ vars.VITE_CONTACT_EMAIL }}
+          VITE_OPERATOR_NAME: ${{ vars.VITE_OPERATOR_NAME }}
+          VITE_OPERATOR_ADDRESS: ${{ vars.VITE_OPERATOR_ADDRESS }}
+          VITE_OPERATOR_UID: ${{ vars.VITE_OPERATOR_UID }}
 
   image:
     name: Build and push the image
@@ -72,5 +80,8 @@ jobs:
             VITE_APP_URL=${{ vars.VITE_APP_URL }}
             VITE_REPO_URL=${{ vars.VITE_REPO_URL }}
             VITE_CONTACT_EMAIL=${{ vars.VITE_CONTACT_EMAIL }}
+            VITE_OPERATOR_NAME=${{ vars.VITE_OPERATOR_NAME }}
+            VITE_OPERATOR_ADDRESS=${{ vars.VITE_OPERATOR_ADDRESS }}
+            VITE_OPERATOR_UID=${{ vars.VITE_OPERATOR_UID }}
           cache-from: type=gha
           cache-to: type=gha,mode=max

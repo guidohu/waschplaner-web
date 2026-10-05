@@ -1,6 +1,8 @@
 <script setup>
-// Privacy policy or imprint (texts in content/legal.js).
-import { computed } from 'vue'
+// Privacy policy or imprint (texts in content/legal.js). Both name the operator,
+// so search engines are asked not to index or archive them: here with a robots
+// tag, and in nginx.conf with an X-Robots-Tag header.
+import { computed, onBeforeUnmount, onMounted } from 'vue'
 import DocBlocks from '../components/DocBlocks.vue'
 import { usePageTitle } from '../composables/usePageTitle'
 import { legalPage } from '../content'
@@ -8,6 +10,15 @@ import { legalPage } from '../content'
 const props = defineProps({ page: { type: String, required: true } })
 const content = computed(() => legalPage(props.page))
 usePageTitle(() => content.value.title)
+
+let robots
+onMounted(() => {
+  robots = document.createElement('meta')
+  robots.name = 'robots'
+  robots.content = 'noindex, noarchive'
+  document.head.appendChild(robots)
+})
+onBeforeUnmount(() => robots?.remove())
 </script>
 
 <template>

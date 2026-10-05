@@ -1,0 +1,48 @@
+{
+  "_comment": "Shared by planner/schedule_test.go and frontend/src/lib/recurrence.test.js, so the Go and JS rule logic cannot diverge. Weeks are numbered from Monday 1970-01-05 (week 0); 2026-10-05 is week 2961.",
+  "matches": [
+    { "name": "first monday matches", "rule": { "cycle_weeks": 1, "week_offset": 0, "month_week": 1 }, "date": "2026-10-05", "want": true },
+    { "name": "second monday is not the first", "rule": { "cycle_weeks": 1, "week_offset": 0, "month_week": 1 }, "date": "2026-10-12", "want": false },
+    { "name": "fourth monday of october is also the last", "rule": { "cycle_weeks": 1, "week_offset": 0, "month_week": -1 }, "date": "2026-10-26", "want": true },
+    { "name": "fourth monday of a five-monday month is not the last", "rule": { "cycle_weeks": 1, "week_offset": 0, "month_week": -1 }, "date": "2026-11-23", "want": false },
+    { "name": "fifth monday is the last", "rule": { "cycle_weeks": 1, "week_offset": 0, "month_week": -1 }, "date": "2026-11-30", "want": true },
+    { "name": "fourth monday matches the 4th rule", "rule": { "cycle_weeks": 1, "week_offset": 0, "month_week": 4 }, "date": "2026-11-23", "want": true },
+    { "name": "every other week, on", "rule": { "cycle_weeks": 2, "week_offset": 1, "month_week": 0 }, "date": "2026-10-19", "want": true },
+    { "name": "every other week, off", "rule": { "cycle_weeks": 2, "week_offset": 1, "month_week": 0 }, "date": "2026-10-12", "want": false },
+    { "name": "every 4 weeks, on", "rule": { "cycle_weeks": 4, "week_offset": 3, "month_week": 0 }, "date": "2026-10-19", "want": true },
+    { "name": "every 4 weeks, off", "rule": { "cycle_weeks": 4, "week_offset": 3, "month_week": 0 }, "date": "2026-10-26", "want": false },
+    { "name": "weekly always", "rule": { "cycle_weeks": 1, "week_offset": 0, "month_week": 0 }, "date": "2031-01-01", "want": true },
+    { "name": "before 1970 the rotation continues", "rule": { "cycle_weeks": 2, "week_offset": 1, "month_week": 0 }, "date": "1969-12-29", "want": true }
+  ],
+  "owners": [
+    {
+      "name": "the monthly exception wins on the first monday",
+      "entries": [
+        { "party_id": "weekly", "cycle_weeks": 1, "week_offset": 0, "month_week": 0 },
+        { "party_id": "monthly", "cycle_weeks": 1, "week_offset": 0, "month_week": 1 },
+        { "party_id": "fourweekly", "cycle_weeks": 4, "week_offset": 3, "month_week": 0 }
+      ],
+      "cases": [
+        { "date": "2026-10-05", "want": "monthly" },
+        { "date": "2026-10-12", "want": "weekly" },
+        { "date": "2026-10-19", "want": "fourweekly" }
+      ]
+    },
+    {
+      "name": "two flats take turns every other week",
+      "entries": [
+        { "party_id": "a", "cycle_weeks": 2, "week_offset": 0, "month_week": 0 },
+        { "party_id": "b", "cycle_weeks": 2, "week_offset": 1, "month_week": 0 }
+      ],
+      "cases": [
+        { "date": "2026-10-05", "want": "b" },
+        { "date": "2026-10-12", "want": "a" }
+      ]
+    },
+    {
+      "name": "nobody",
+      "entries": [{ "party_id": "last", "cycle_weeks": 1, "week_offset": 0, "month_week": -1 }],
+      "cases": [{ "date": "2026-10-05", "want": "" }]
+    }
+  ]
+}

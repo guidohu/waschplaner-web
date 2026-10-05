@@ -3,6 +3,9 @@
 import BaseIcon from './BaseIcon.vue'
 import { t } from '../i18n'
 import { FEATURE_GROUPS, PLANS } from '../lib/plans'
+import { ONLINE_AVAILABLE } from '../site'
+
+const later = (p) => !ONLINE_AVAILABLE && p !== 'free'
 const text = (v) => t(`pricing.values.${v}`)
 </script>
 
@@ -13,7 +16,10 @@ const text = (v) => t(`pricing.values.${v}`)
       <thead>
         <tr>
           <th scope="col">{{ $t('pricing.table.feature') }}</th>
-          <th v-for="p in PLANS" :key="p" scope="col" :class="{ plus: p === 'plus' }">{{ $t(`pricing.plans.${p}.name`) }}</th>
+          <th v-for="p in PLANS" :key="p" scope="col" :class="{ plus: p === 'plus', later: later(p) }">
+            {{ $t(`pricing.plans.${p}.name`) }}
+            <span v-if="later(p)" class="later-tag">{{ $t('common.later') }}</span>
+          </th>
         </tr>
       </thead>
       <tbody v-for="g in FEATURE_GROUPS" :key="g.key">
@@ -22,7 +28,7 @@ const text = (v) => t(`pricing.values.${v}`)
         </tr>
         <tr v-for="row in g.rows" :key="row.key">
           <th scope="row">{{ $t(`pricing.table.rows.${row.key}`) }}</th>
-          <td v-for="p in PLANS" :key="p" :class="{ plus: p === 'plus' }">
+          <td v-for="p in PLANS" :key="p" :class="{ plus: p === 'plus', later: later(p) }">
             <span v-if="row[p] === true" class="yes">
               <BaseIcon name="check" :size="20" /><span class="sr-only">{{ $t('common.included') }}</span>
             </span>
@@ -48,6 +54,8 @@ const text = (v) => t(`pricing.values.${v}`)
 .compare tbody th { font-weight: 500; color: var(--text); text-transform: none; letter-spacing: 0; font-size: 0.95rem; }
 .compare .plus { background: color-mix(in srgb, var(--primary-soft) 55%, transparent); }
 .compare thead .plus { color: var(--primary); }
+.compare .later { opacity: 0.5; }
+.later-tag { display: block; font-size: 0.7rem; font-weight: 600; color: var(--muted); text-transform: none; }
 .compare tr.group th {
   background: var(--surface-2); color: var(--muted); font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.04em; padding-block: 0.5rem;

@@ -4,7 +4,41 @@
 // (**bold**, `code`, [label](url)) and the values from site.js ({app}, {trial} …).
 export default [
   {
+    slug: 'planner',
+    section: 'use',
+    icon: 'print',
+    title: 'Plan im Browser erstellen',
+    summary: 'In fünf Schritten zum Waschplan – ohne Konto, und alles bleibt in deinem Browser.',
+    blocks: [
+      { p: 'Mit dem [Planer](/planner) erstellst du euren Waschplan direkt im Browser und druckst ihn aus. Du brauchst weder ein Konto noch eine E-Mail-Adresse.' },
+      { callout: 'Alles, was du eingibst, bleibt in deinem Browser. Der Planer schickt nichts an einen Server – auch nicht an uns.', tone: 'privacy' },
+      { h2: 'Die fünf Schritte' },
+      {
+        steps: [
+          { title: 'Haus', text: 'Der Name des Hauses und die Wohnungen. «Schnell ausfüllen» erstellt Bezeichnungen wie «EG links, EG rechts». Tippe auf einen Punkt, um die Farbe einer Wohnung zu ändern.' },
+          { title: 'Waschküche', text: 'Wie viele Waschmaschinen, Tumbler und Trockenräume es gibt und ob sie zusammen, einzeln oder gemischt benutzt werden.' },
+          { title: 'Zeiten', text: 'An welchen Tagen gewaschen wird und wie ein Tag in Zeitfenster aufgeteilt ist.' },
+          { title: 'Fester Plan', text: 'Wer welches Zeitfenster regelmässig hat: jede Woche, alle paar Wochen oder einmal im Monat. Zuerst fragt der Planer, nach wie vielen Wochen sich der Plan wiederholt und wie viel Zeit frei bleiben soll für spontanes Waschen. Daraus schlägt er eine faire Verteilung vor: Die Termine einer Wohnung liegen zusammen, die freie Zeit verteilt sich über die Woche. Du kannst Zeitfenster ziehen oder mit «Malen» verteilen. Tippe auf eine Wohnung, um ihr eine Zeit zu geben – regelmässig oder «Nur an einem Datum», zum Beispiel am 1. August.' },
+          { title: 'Drucken', text: 'Zwei Wochen pro A4-Seite, bis zu einem ganzen Jahr, für jede Maschine oder jeden Raum. Im Druckfenster kannst du den Plan auch als PDF speichern.' },
+        ],
+      },
+      { h2: 'Einzelne Tage ändern' },
+      { p: 'Ist an einem Tag etwas anders, zum Beispiel wegen Ferien oder einer Reparatur, gib der Wohnung im festen Plan eine Zeit «Nur an einem Datum», oder tippe in der Vorschau auf das Zeitfenster und wähle eine andere Wohnung oder «Frei». Geänderte Tage sind in der Vorschau umrandet; auf Papier sieht man nur das Ergebnis.' },
+      { h2: 'Speichern und später weiter bearbeiten' },
+      {
+        list: [
+          'Der Plan bleibt in deinem Browser gespeichert. Öffnest du den Planer im selben Browser wieder, ist er noch da.',
+          '**Als Datei speichern** sichert den Plan auf deinem Gerät. Mit **Datei öffnen** bearbeitest du ihn später weiter, auch auf einem anderen Gerät.',
+          '**Neu beginnen** löscht alles in diesem Browser.',
+        ],
+      },
+      { h2: 'Was als Nächstes kommt' },
+      { p: 'Später soll es eine Online-Version geben, in der alle im Haus selbst buchen, tauschen und absagen. Bis dahin hängt der Plan auf Papier in der Waschküche. [Mehr dazu](/pricing)' },
+    ],
+  },
+  {
     slug: 'setup',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'wand',
     title: 'Haus einrichten',
@@ -36,6 +70,7 @@ export default [
   },
   {
     slug: 'residents',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'users',
     title: 'Für Bewohner:innen',
@@ -84,6 +119,7 @@ export default [
   },
   {
     slug: 'admin',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'sliders',
     title: 'Für die Verwaltung',
@@ -136,6 +172,7 @@ export default [
   },
   {
     slug: 'self-hosting',
+    later: true, // describes the online version or self-hosting
     section: 'run',
     icon: 'server',
     title: 'Selbst hosten',
@@ -200,6 +237,7 @@ export default [
   },
   {
     slug: 'configuration',
+    later: true, // describes the online version or self-hosting
     section: 'run',
     icon: 'terminal',
     title: 'Konfiguration',

@@ -1,7 +1,41 @@
 // Help pages in English (British spelling). Same slugs and blocks as docs.de.js.
 export default [
   {
+    slug: 'planner',
+    section: 'use',
+    icon: 'print',
+    title: 'Create a schedule in your browser',
+    summary: 'Five steps to your laundry schedule – no account, and everything stays in your browser.',
+    blocks: [
+      { p: 'With the [planner](/planner) you create your laundry schedule right in your browser and print it. You need neither an account nor an e-mail address.' },
+      { callout: 'Everything you enter stays in your browser. The planner sends nothing to a server – not to us either.', tone: 'privacy' },
+      { h2: 'The five steps' },
+      {
+        steps: [
+          { title: 'House', text: 'The name of the house and the flats. “Quick fill” creates labels like “Ground floor left, Ground floor right”. Tap a dot to change a flat’s colour.' },
+          { title: 'Laundry room', text: 'How many washing machines, tumble dryers and drying rooms there are, and whether they are used together, separately or mixed.' },
+          { title: 'Times', text: 'The days for laundry and how each day is split into time slots.' },
+          { title: 'Schedule', text: 'Who has which time slot regularly: every week, every few weeks or once a month. First the planner asks after how many weeks the plan repeats and how much time should stay free for spontaneous washing. From that, it suggests a fair split: a flat’s turns stay together, and the free time is spread over the week. You can drag time slots or hand them out with “Paint”. Tap a flat to give it a time – regularly or “On one date only”, for example on 1 August.' },
+          { title: 'Print', text: 'Two weeks per A4 page, up to a whole year, for each machine or room. The print dialog can also save the schedule as a PDF.' },
+        ],
+      },
+      { h2: 'Changing single days' },
+      { p: 'If a day is different, for example because of holidays or a repair, give the flat a time “On one date only” in the regular schedule, or tap the time slot in the preview and choose another flat or “Free”. Changed days have a frame in the preview; on paper you only see the result.' },
+      { h2: 'Saving and editing later' },
+      {
+        list: [
+          'The schedule stays saved in your browser. If you open the planner in the same browser again, it is still there.',
+          '**Save as a file** keeps the schedule on your device. With **Open a file** you keep editing it later, on another device too.',
+          '**Start over** deletes everything in this browser.',
+        ],
+      },
+      { h2: 'What comes next' },
+      { p: 'Later there will be an online version where everyone in the house books, swaps and cancels by themselves. Until then, the schedule hangs on paper in the laundry room. [Find out more](/pricing)' },
+    ],
+  },
+  {
     slug: 'setup',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'wand',
     title: 'Setting up a house',
@@ -33,6 +67,7 @@ export default [
   },
   {
     slug: 'residents',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'users',
     title: 'For residents',
@@ -81,6 +116,7 @@ export default [
   },
   {
     slug: 'admin',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'sliders',
     title: 'For administrators',
@@ -133,6 +169,7 @@ export default [
   },
   {
     slug: 'self-hosting',
+    later: true, // describes the online version or self-hosting
     section: 'run',
     icon: 'server',
     title: 'Self-hosting',
@@ -197,6 +234,7 @@ export default [
   },
   {
     slug: 'configuration',
+    later: true, // describes the online version or self-hosting
     section: 'run',
     icon: 'terminal',
     title: 'Configuration',

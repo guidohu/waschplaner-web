@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router'
 import BaseIcon from './BaseIcon.vue'
 import LanguagePicker from './LanguagePicker.vue'
 import { t } from '../i18n'
-import { appLink } from '../site'
+import { ONLINE_AVAILABLE, appLink } from '../site'
 
 const route = useRoute()
 const open = ref(false)
@@ -16,9 +16,9 @@ const links = computed(() => {
   return [
     { to: { path: '/', hash: '#features' }, label: t('nav.features'), active: false },
     { to: '/pricing', label: t('nav.pricing'), active: route.path === '/pricing' },
-    { to: '/docs/self-hosting', label: t('nav.selfHost'), active: selfHost },
-    { to: '/docs', label: t('nav.docs'), active: route.path.startsWith('/docs') && !selfHost },
-  ]
+    ONLINE_AVAILABLE && { to: '/docs/self-hosting', label: t('nav.selfHost'), active: selfHost },
+    { to: '/docs', label: t('nav.docs'), active: route.path.startsWith('/docs') && !(ONLINE_AVAILABLE && selfHost) },
+  ].filter(Boolean)
 })
 
 watch(() => route.fullPath, () => (open.value = false))
@@ -50,8 +50,8 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 
       <div class="actions">
         <LanguagePicker class="wide-only" />
-        <a class="btn ghost sm wide-only" :href="appLink('/login')">{{ $t('nav.login') }}</a>
-        <a class="btn sm" :href="appLink('/setup')">{{ $t('nav.start') }}</a>
+        <a v-if="ONLINE_AVAILABLE" class="btn ghost sm wide-only" :href="appLink('/login')">{{ $t('nav.login') }}</a>
+        <RouterLink class="btn sm" to="/planner">{{ $t('nav.start') }}</RouterLink>
         <button
           type="button"
           class="btn ghost sm menu-btn"
@@ -72,7 +72,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
           <BaseIcon name="chevron-right" :size="18" />
         </RouterLink>
         <div class="menu-foot">
-          <a class="btn ghost block" :href="appLink('/login')">{{ $t('nav.login') }}</a>
+          <a v-if="ONLINE_AVAILABLE" class="btn ghost block" :href="appLink('/login')">{{ $t('nav.login') }}</a>
           <LanguagePicker />
         </div>
       </nav>

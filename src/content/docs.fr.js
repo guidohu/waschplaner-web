@@ -2,7 +2,41 @@
 // and English, so buttons are quoted with their English label, « Book ».
 export default [
   {
+    slug: 'planner',
+    section: 'use',
+    icon: 'print',
+    title: 'Créer un planning dans le navigateur',
+    summary: 'Votre planning de lessive en cinq étapes – sans compte, et tout reste dans votre navigateur.',
+    blocks: [
+      { p: 'Avec le [planificateur](/planner), vous créez votre planning de lessive directement dans votre navigateur et l’imprimez. Vous n’avez besoin ni d’un compte ni d’une adresse e-mail.' },
+      { callout: 'Tout ce que vous saisissez reste dans votre navigateur. Le planificateur n’envoie rien à un serveur – pas non plus à nous.', tone: 'privacy' },
+      { h2: 'Les cinq étapes' },
+      {
+        steps: [
+          { title: 'Immeuble', text: 'Le nom de l’immeuble et les appartements. « Remplir vite » crée des noms comme « Rez gauche, Rez droite ». Touchez un point pour changer la couleur d’un appartement.' },
+          { title: 'Buanderie', text: 'Combien de lave-linge, sèche-linge et étendages il y a, et s’ils sont utilisés ensemble, séparément ou de façon mixte.' },
+          { title: 'Horaires', text: 'Les jours de lessive et comment une journée est découpée en créneaux.' },
+          { title: 'Tournus fixe', text: 'Qui a quel créneau régulièrement : chaque semaine, toutes les quelques semaines ou une fois par mois. Le planificateur demande d’abord après combien de semaines le plan se répète et combien de temps doit rester libre pour les lessives spontanées. Il propose ensuite une répartition équitable : les créneaux d’un appartement restent groupés, et le temps libre est réparti sur la semaine. Vous pouvez glisser des créneaux ou les répartir avec « Peindre ». Touchez un appartement pour lui donner un créneau – régulièrement ou « À une seule date », par exemple le 1er août.' },
+          { title: 'Imprimer', text: 'Deux semaines par page A4, jusqu’à une année entière, pour chaque machine ou local. Dans la fenêtre d’impression, vous pouvez aussi enregistrer le planning en PDF.' },
+        ],
+      },
+      { h2: 'Modifier des jours isolés' },
+      { p: 'Si un jour est différent, par exemple à cause de vacances ou d’une réparation, donnez à l’appartement un créneau « À une seule date » dans le tournus fixe, ou touchez le créneau dans l’aperçu et choisissez un autre appartement ou « Libre ». Les jours modifiés sont encadrés dans l’aperçu ; sur papier, on ne voit que le résultat.' },
+      { h2: 'Enregistrer et continuer plus tard' },
+      {
+        list: [
+          'Le planning reste enregistré dans votre navigateur. Si vous rouvrez le planificateur dans le même navigateur, il est toujours là.',
+          '**Enregistrer comme fichier** conserve le planning sur votre appareil. Avec **Ouvrir un fichier**, vous le modifiez plus tard, aussi sur un autre appareil.',
+          '**Recommencer** efface tout dans ce navigateur.',
+        ],
+      },
+      { h2: 'Et ensuite' },
+      { p: 'Plus tard, il y aura une version en ligne où tout l’immeuble réserve, échange et annule soi-même. D’ici là, le planning est affiché sur papier dans la buanderie. [En savoir plus](/pricing)' },
+    ],
+  },
+  {
     slug: 'setup',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'wand',
     title: 'Configurer un immeuble',
@@ -34,6 +68,7 @@ export default [
   },
   {
     slug: 'residents',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'users',
     title: 'Pour les habitant·e·s',
@@ -82,6 +117,7 @@ export default [
   },
   {
     slug: 'admin',
+    later: true, // describes the online version or self-hosting
     section: 'use',
     icon: 'sliders',
     title: 'Pour l’administration',
@@ -134,6 +170,7 @@ export default [
   },
   {
     slug: 'self-hosting',
+    later: true, // describes the online version or self-hosting
     section: 'run',
     icon: 'server',
     title: 'Auto-hébergement',
@@ -198,6 +235,7 @@ export default [
   },
   {
     slug: 'configuration',
+    later: true, // describes the online version or self-hosting
     section: 'run',
     icon: 'terminal',
     title: 'Configuration',

@@ -13,6 +13,9 @@ services:
         VITE_APP_URL: ${VITE_APP_URL:-https://app.waschplaner.com}
         VITE_REPO_URL: ${VITE_REPO_URL:-https://github.com/waschplaner/waschplaner}
         VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-hallo@waschplaner.com}
+        VITE_OPERATOR_NAME: ${VITE_OPERATOR_NAME:-}
+        VITE_OPERATOR_ADDRESS: ${VITE_OPERATOR_ADDRESS:-}
+        VITE_OPERATOR_UID: ${VITE_OPERATOR_UID:-}
     restart: unless-stopped
     ports:
       # 8081, so it can run next to the app (which uses 8080).

@@ -2,13 +2,14 @@
 // its frontend/GLOSSARY.md. Inline markup: **bold**, `code`, [label](url).
 export default {
   common: {
+    later: 'Coming later', laterPlus: 'Later with Plus',
     language: 'Language', decrease: 'Fewer', increase: 'More', copy: 'Copy', copied: 'Copied',
     soon: 'Soon', included: 'Included', notIncluded: 'Not included', learnMore: 'Learn more',
     free: 'Free', plus: 'Plus',
   },
   nav: {
     features: 'Features', pricing: 'Pricing', selfHost: 'Self-hosting', docs: 'Help',
-    login: 'Log in', start: 'Set up your house', menu: 'Menu', close: 'Close', skip: 'Skip to content',
+    login: 'Log in', start: 'Create a schedule', menu: 'Menu', close: 'Close', skip: 'Skip to content',
     main: 'Main navigation', home: 'Waschplaner – home',
   },
   footer: {
@@ -23,9 +24,13 @@ export default {
     hero: {
       eyebrow: 'For houses with a shared laundry room',
       title: 'Who does the laundry when – sorted.',
-      text: 'Regular times like calendar events, shared out fairly and set up in five minutes. Print the schedule for the laundry room for free – or let every resident book online with Plus.',
-      start: 'Set up your house for free', selfHost: 'Self-host',
-      facts: ['Set up in 5 minutes', 'Free to print', '{trial} days of Plus on us'],
+      text: 'Regular times like calendar events, shared out fairly and created in five minutes. Print the schedule for a whole year – free, without an account, and what you enter never leaves your browser.',
+      start: 'Create a schedule for free', more: 'See the features',
+      facts: [
+        'Created in 5 minutes',
+        'No account',
+        'Stays in your browser',
+      ],
     },
     demo: {
       house: '12 Park Road', navPlan: 'Schedule', navMine: 'My laundry', range: '21–25 Sept', date: '{d}',
@@ -33,28 +38,28 @@ export default {
       done: 'done', freeFrom: 'Free from {time}', bookRest: 'Book the rest', mine: 'Your flat: {name}',
       days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
       flats: ['Ground left', 'Ground right', '1st left', '1st right', '2nd floor'],
-      hint: 'This is how everyone uses the schedule with Plus. Try it: tap “Book” or one of your flat’s time slots.',
+      hint: 'This is how the online version will look, where everyone books by themselves – it is coming later. Try it: tap “Book” or one of your flat’s time slots.',
       booked: 'Booked: {when}', freed: 'Freed up: {when}',
       label: 'Example of a laundry schedule with five flats',
     },
     steps: {
       eyebrow: 'How it works',
       title: 'Three steps to your laundry schedule',
-      text: 'The administrator sets up the house once. After that, the schedule hangs in the laundry room – or everyone uses it online.',
+      text: 'You create the schedule once in your browser and hang it up in the laundry room. Later, everyone will be able to use it online too.',
       items: [
-        { icon: 'wand', title: 'Set up the house', text: 'A wizard asks about flats, machines and times in six short steps and suggests a fair regular schedule.' },
-        { icon: 'print', title: 'Print it', text: 'Two weeks per A4 page, for each machine or room. If you change something, simply print again. Free for up to {printFree} weeks at a time, a whole year with Plus.' },
-        { icon: 'users', title: 'Online for everyone', text: 'With Plus, residents scan the QR code on the poster and book, swap and cancel by themselves.' },
+        { icon: 'wand', title: 'Create the schedule', text: 'A wizard asks about flats, machines and times in five short steps and suggests a fair regular schedule. Everything stays in your browser.' },
+        { icon: 'print', title: 'Print it', text: 'Two weeks per A4 page, up to a whole year, for each machine or room. You change single days right in the preview.' },
+        { icon: 'users', title: 'Online for everyone', text: 'With Plus, residents will scan the QR code on the poster and book, swap and cancel by themselves.', later: true },
       ],
     },
     features: {
       eyebrow: 'Features',
       title: 'Everything a shared laundry room needs',
-      text: 'Free for the administrator, and with Plus for everyone in the house.',
+      text: 'Free in your browser – and later, with Plus, online for everyone in the house.',
       items: {
-        plan: { title: 'A regular schedule like a calendar', text: 'Every Tuesday, every 2 weeks or the first Monday of the month – like repeating events. The wizard shares the time out fairly.' },
+        plan: { title: 'A regular schedule like a calendar', text: 'Every Tuesday, every 2 weeks or the first Monday of the month – like repeating events. The wizard shares the time out fairly and leaves as much free for spontaneous washing as you like.' },
         rooms: { title: 'Your laundry room, as it is', text: 'Washing machines, tumble dryers and drying rooms: booked together as a laundry room, separately or mixed. With their own times per day.' },
-        print: { title: 'Print it to hang up', text: 'Two weeks per A4 page, per machine or room. Up to {printFree} weeks at a time on Free, a whole year with Plus. The print dialog also saves the schedule as a PDF.' },
+        print: { title: 'Print it to hang up', text: 'Two weeks per A4 page, per machine or room, up to a whole year. The print dialog also saves the schedule as a PDF.' },
         book: { title: 'Book with one tap', text: 'Each flat books free time slots by itself, as often as the house rules allow, and frees up or moves its own.' },
         finish: { title: 'Done – free the rest', text: 'Finished early? One tap and the rest of the time slot is free for everyone. You can take it back until someone books it.' },
         takeover: { title: 'Fair rules for taking over', text: 'If nobody shows up, the time slot can be taken over after a grace period. Checking in protects it. The flat concerned is notified.' },
@@ -68,32 +73,32 @@ export default {
       text: 'Waschplaner is made for people who would rather not think about technology.',
       items: [
         { icon: 'text-size', title: 'Large text if you like', text: 'Normal, Large or Extra large, per device. Big buttons and plain words instead of jargon.' },
-        { icon: 'qr', title: 'No password', text: 'Scan the QR code, enter the access code, done. Only people who want to log in on other devices need a password.' },
-        { icon: 'shield', title: 'Only the data the schedule needs', text: 'Flats are called “Ground left”, not “The Smiths”. First names are enough; e-mail is only for logging in.' },
-        { icon: 'globe', title: 'Deutsch and English', text: 'The app speaks German and English; everyone picks their own. And anyone who is not online reads the schedule on paper.' },
+        { icon: 'lock', title: 'No account', text: 'No account, no e-mail, no password. You create the schedule right in your browser, and what you enter never leaves it.' },
+        { icon: 'shield', title: 'Only the data the schedule needs', text: 'Flats are called “Ground left”, not “The Smiths”. What you enter stays on your device.' },
+        { icon: 'globe', title: 'Four languages', text: 'Deutsch, Français, Italiano and English – everyone picks their own. And anyone who is not online reads the schedule on paper.' },
       ],
     },
     ways: {
-      eyebrow: 'Free or Plus',
-      title: 'Free on paper, online with Plus',
-      text: 'On Free you print the schedule. With Plus every resident uses it online – {trial} days on us, then CHF {price} per flat per year. Or you run Waschplaner yourself.',
+      eyebrow: 'Today and later',
+      title: 'Free in your browser today, online for everyone later',
+      text: 'You can create and print the schedule for free in your browser today. The online version, where everyone books by themselves, is coming later as Plus – for CHF {price} per flat per year.',
       compare: 'Compare all features',
     },
     faq: {
       title: 'Frequently asked questions',
       items: [
-        { q: 'What is the difference between Free and Plus?', a: 'On Free the administrator creates the schedule, changes single days and prints it for the laundry room, up to {printFree} weeks at a time. With Plus every resident uses it online: booking, freeing up, taking over – with e-mails and calendar subscriptions. You can then also print a whole year at once. [Compare prices](/pricing)' },
-        { q: 'Do we need to install an app?', a: 'No. Waschplaner runs in the browser on phones, tablets and computers. If you like, add it to your phone with “Install as an app” or “Add to Home Screen”.' },
-        { q: 'Does every resident need a smartphone?', a: 'No. With Plus any browser will do, and the administrator can book for any flat. Without Plus the schedule hangs on paper in the laundry room anyway.' },
-        { q: 'What happens if someone does not use their time slot?', a: 'You decide in the rules: others may take it over after a grace period (the default), at any time, or never. Whoever has checked in always keeps their time slot.' },
-        { q: 'Can I run Waschplaner myself?', a: 'Yes. The source code is public. With Docker, Waschplaner runs on your own server with every feature, and there you switch Plus on for free. [Read the guide](/docs/self-hosting)' },
-        { q: 'Is Waschplaner available in French or Italian?', a: 'This website is. The app itself is currently in German and English.' },
-        { q: 'Where is our data stored?', a: 'Hosted Waschplaner keeps it on our server; self-hosted, it stays on yours. We only store what the schedule needs and never pass anything on. [Privacy](/privacy)' },
+        { q: 'What does the planner cost?', a: 'Nothing. You create the schedule in your browser and print it for up to a year – free and without an account. The online version is coming later as Plus. [See prices](/pricing)' },
+        { q: 'Where does what I enter go?', a: 'Only into your browser. The planner sends nothing to a server – not to us either. To keep editing on another device, save the schedule as a file.' },
+        { q: 'Can I change the schedule later?', a: 'Yes. In the same browser it is still there next time; otherwise open the saved file. You change single days in the preview, then simply print again.' },
+        { q: 'Does every resident need a smartphone?', a: 'No. The schedule hangs on paper in the laundry room. With Plus, everyone will later be able to use it online too – if they want to.' },
+        { q: 'Can I run Waschplaner myself?', a: 'That is coming later, together with the online version.' },
+        { q: 'Is Waschplaner available in French or Italian?', a: 'Yes. The website and the planner are in German, French, Italian and English.' },
+        { q: 'When is the online version coming?', a: 'We are working on it. With Plus, everyone in the house will use the schedule online, book and swap – for CHF {price} per flat per year. Until then, the planner in your browser is free.' },
       ],
     },
     cta: {
       title: 'Ready for a relaxed laundry day?',
-      text: 'Set up your laundry schedule in five minutes: free to print, with {trial} days of Plus on us.',
+      text: 'Create your laundry schedule in five minutes: free, without an account and right in your browser.',
     },
   },
 
@@ -101,20 +106,27 @@ export default {
     title: 'Pricing',
     head: {
       eyebrow: 'Pricing',
-      title: 'Free on paper. Online for everyone with Plus.',
-      text: 'Plus costs CHF {price} per flat per year, and the first {trial} days are on us. No subscription, no cost per person and no limit on flats or machines.',
+      title: 'Free in your browser today. Online for everyone with Plus later.',
+      text: 'You can create and print the schedule for free and without an account today. The online version with Plus and self-hosting are coming later; the prices below apply then.',
     },
     plans: {
       free: {
-        name: 'Free', tag: 'To print', price: 'CHF 0', unit: 'for ever', cta: 'Set up your house for free',
-        text: 'The administrator creates the schedule and prints it for the laundry room.',
-        points: ['One house, any number of flats and machines', 'Six-step setup with a fair regular schedule', 'Change single days', 'Print it: up to {printFree} weeks at a time, also as a PDF', 'Residents need no account'],
+        name: 'Free', tag: 'In your browser', badge: 'Available now', price: 'CHF 0', unit: 'no account', cta: 'Create a schedule now',
+        text: 'Create the schedule right in your browser and print it. What you enter never leaves your browser.',
+        points: [
+          'No account and no e-mail',
+          'What you enter stays in your browser',
+          'Regular schedule with a fair suggestion',
+          'Change single days',
+          'Print a whole year, also as a PDF',
+          'Save as a file and keep editing later',
+        ],
       },
       plus: {
         name: 'Plus', tag: 'Online for everyone', price: 'CHF {price}', unit: 'per flat per year', cta: 'Try it free for {trial} days',
         badge: '{trial} days on us',
         text: 'Every resident uses the schedule online – and the server takes care of the rest.',
-        points: ['Everything in Free', 'Print a whole year at once', 'Invite with a QR code and access codes', 'Book, free up, take over, move, check in', 'E-mail about changes and calendar subscription', 'Public schedule view for the laundry room', 'No subscription: nothing renews by itself'],
+        points: ['Everything in Free', 'Invite with a QR code and access codes', 'Book, free up, take over, move, check in', 'E-mail about changes and calendar subscription', 'Public schedule view for the laundry room', 'No subscription: nothing renews by itself'],
       },
       self: {
         name: 'Self-hosted', tag: 'Your server', price: 'CHF 0', unit: 'on your server', cta: 'Read the guide',
@@ -128,7 +140,13 @@ export default {
       text: 'Creating and printing a schedule takes almost no computing time. Once everyone books online, the server works for every flat, around the clock. That is why Plus is priced per flat – and costs no more than it has to.',
       free: {
         title: 'Free: for the administrator', tag: 'Free',
-        items: ['Set up the house in six steps', 'Share out regular times fairly', 'Change single days', 'Print up to {printFree} weeks at a time', 'Everything stays saved'],
+        items: [
+          'Create the schedule in five steps',
+          'Share out regular times fairly',
+          'Change single days',
+          'Print a whole year',
+          'Everything stays in your browser',
+        ],
       },
       plus: {
         title: 'Plus: for everyone in the house', tag: 'Plus',
@@ -142,7 +160,7 @@ export default {
       },
     },
     journey: {
-      eyebrow: 'How Plus works',
+      eyebrow: 'How Plus will work',
       title: 'Try, buy, renew – no subscription',
       text: 'The administrator buys Plus for a year. Nothing renews by itself, and nobody gets a surprise.',
       steps: [
@@ -167,7 +185,7 @@ export default {
       },
       rows: {
         house: 'One house with any number of flats and machines',
-        wizard: 'Six-step setup with a fair regular schedule',
+        wizard: 'Setup with a fair regular schedule',
         edit: 'Change single days',
         print: 'Print it (two weeks per A4 page)',
         join: 'Invite with a QR code and access codes',
@@ -196,6 +214,7 @@ export default {
     faq: {
       title: 'Questions about price and payment',
       items: [
+        { q: 'When is Plus coming?', a: 'We are working on it. Until then, you create and print the schedule for free in your browser – without an account. [Create a schedule](/planner)' },
         { q: 'Who pays for Plus?', a: 'The administrator, for the whole house. Residents never pay anything and never enter payment details.' },
         { q: 'How are flats counted?', a: 'You pay for the active flats. If one is added during the year, you pay its share for the rest of the year before it starts (at least CHF {min}). Nobody else notices anything.' },
         { q: 'Does Plus renew by itself?', a: 'No, Plus is not a subscription. We remind you by e-mail {remind} days before it ends. If you renew in the last {renew} days, the new year only starts when the old one ends.' },
@@ -207,6 +226,7 @@ export default {
   },
 
   docs: {
+    later: 'This page describes the online version. It is coming later – today you create the schedule [in your browser](/planner).',
     appLanguage: 'The app is in German and English.',
     title: 'Help & documentation',
     intro: 'How to set up Waschplaner, use it day to day and run it yourself.',

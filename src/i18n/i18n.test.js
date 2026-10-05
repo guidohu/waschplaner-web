@@ -87,7 +87,7 @@ describe('help pages', () => {
   })
 
   it('links only to pages that exist', () => {
-    const pages = new Set(['/', '/pricing', '/docs', '/privacy', '/imprint', ...docsDe.map((p) => `/docs/${p.slug}`)])
+    const pages = new Set(['/', '/pricing', '/planner', '/docs', '/privacy', '/imprint', ...docsDe.map((p) => `/docs/${p.slug}`)])
     for (const loc of Object.keys(DICTS)) {
       for (const [, href] of everything(loc).matchAll(/\]\((\/[^)#]*)/g)) expect(pages, `${loc}: ${href}`).toContain(href)
     }

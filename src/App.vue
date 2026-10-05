@@ -1,6 +1,9 @@
 <script setup>
+import { useRoute } from 'vue-router'
 import TheSiteFooter from './components/TheSiteFooter.vue'
 import TheSiteHeader from './components/TheSiteHeader.vue'
+
+const route = useRoute()
 </script>
 
 <template>
@@ -8,7 +11,7 @@ import TheSiteHeader from './components/TheSiteHeader.vue'
   <main id="main" tabindex="-1">
     <RouterView />
   </main>
-  <TheSiteFooter />
+  <TheSiteFooter v-if="!route.meta.hideFooter" />
 </template>
 
 <style>

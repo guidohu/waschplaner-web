@@ -15,7 +15,7 @@ export const FEATURE_GROUPS = [
       { key: 'house', free: true, plus: true, self: 'manyHouses' },
       { key: 'wizard', free: true, plus: true, self: true },
       { key: 'edit', free: true, plus: true, self: true },
-      { key: 'print', free: 'printFree', plus: 'printYear', self: 'printYear' },
+      { key: 'print', free: 'printYear', plus: 'printYear', self: 'printYear' },
     ],
   },
   {

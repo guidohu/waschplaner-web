@@ -7,6 +7,7 @@ import RichText from '../../components/RichText.vue'
 import { usePageTitle } from '../../composables/usePageTitle'
 import { docPages } from '../../content'
 import { APP_LOCALES, i18n, t } from '../../i18n'
+import { ONLINE_AVAILABLE } from '../../site'
 import BaseCallout from '../../components/BaseCallout.vue'
 
 const props = defineProps({ slug: { type: String, required: true } })
@@ -28,6 +29,7 @@ const otherLanguage = computed(() => !APP_LOCALES.includes(i18n.locale))
       <h1>{{ page.title }}</h1>
       <p class="lead">{{ page.summary }}</p>
     </header>
+    <BaseCallout v-if="page.later && !ONLINE_AVAILABLE" class="app-lang" tone="warn" icon="clock"><RichText :text="$t('docs.later')" /></BaseCallout>
     <BaseCallout v-if="otherLanguage" class="app-lang" icon="globe"><RichText :text="$t('docs.appLanguage')" /></BaseCallout>
     <DocBlocks :blocks="page.blocks" />
     <p class="ask small muted"><BaseIcon name="mail" :size="16" /> <span><RichText :text="$t('docs.edit')" /></span></p>

@@ -1,0 +1,56 @@
+/*
+ * Global styles the app's planner components rely on, copied from the app's
+ * frontend/src/styles.css (the website's styles.css leaves them out). Loaded
+ * only with the planner (PlannerView.vue).
+ */
+/* Two-column list of short text inputs with an icon or colour dot in front. */
+.name-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.6rem; }
+.name-input {
+  display: flex; align-items: center; gap: 0.55rem; border: 1px solid var(--border-strong); border-radius: var(--radius-sm);
+  padding: 0 0.3rem 0 0.7rem; background: var(--surface); color: var(--muted);
+}
+.name-input:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.name-input input { border: 0; box-shadow: none !important; padding-left: 0; color: var(--text); }
+
+/* Choosing a flat: the same boxes as .name-input, with the flat's colour dot.
+   <div class="flat-pick"><button class="flat-option"> or <label class="flat-option"><input type="radio" class="sr-only"> */
+.flat-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.5rem; }
+.flat-option {
+  display: flex; align-items: center; gap: 0.55rem; min-height: 44px; padding: 0.4rem 0.75rem; text-align: left;
+  border: 1px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--text);
+  font: inherit; font-weight: 600; cursor: pointer;
+}
+.flat-option:hover { border-color: var(--primary); }
+.flat-option.active, .flat-option:has(input:checked) {
+  border-color: var(--primary); background: var(--primary-soft); box-shadow: 0 0 0 3px var(--primary-soft);
+}
+.flat-option:has(input:focus-visible) { outline: 3px solid var(--primary-border); outline-offset: 2px; }
+
+.slot-chip {
+  display: inline-flex; align-items: center; gap: 0.25rem; background: var(--surface-2); border-radius: 999px;
+  padding: 0.15rem 0.3rem 0.15rem 0.65rem; font-size: 0.86rem; font-variant-numeric: tabular-nums;
+}
+
+/* ---------- drag and drop (usePointerDrag) ---------- */
+body.is-dragging, body.is-dragging * { cursor: grabbing !important; user-select: none; -webkit-user-select: none; }
+[data-drag-key] { -webkit-touch-callout: none; }
+
+/* ---------- toasts ---------- */
+.toasts {
+  position: fixed; top: 1rem; right: 1rem; z-index: 100; display: flex; flex-direction: column; gap: 0.5rem;
+  max-width: min(380px, calc(100vw - 2rem));
+}
+.toast {
+  background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--ok);
+  box-shadow: var(--shadow-lg); border-radius: var(--radius-sm); padding: 0.75rem 1rem; animation: pop 0.15s ease-out;
+}
+.toast.error { border-left-color: var(--danger); }
+.toast.info { border-left-color: var(--primary); }
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop { from { transform: translateY(8px) scale(0.98); opacity: 0; } }
+
+/* Printing the plan: only the sheets go on paper. */
+@media print {
+  .site-header, .site-footer, .toasts, .no-print { display: none !important; }
+  body { background: #fff; }
+}

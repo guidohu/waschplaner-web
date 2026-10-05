@@ -4,13 +4,14 @@
 // buanderie, Wohnung = appartement, Bewohner:in = habitant·e, Verwaltung = administration.
 export default {
   common: {
+    later: 'Bientôt disponible', laterPlus: 'Plus tard avec Plus',
     language: 'Langue', decrease: 'Moins', increase: 'Plus', copy: 'Copier', copied: 'Copié',
     soon: 'Bientôt', included: 'Inclus', notIncluded: 'Non inclus', learnMore: 'En savoir plus',
     free: 'Gratuit', plus: 'Plus',
   },
   nav: {
     features: 'Fonctions', pricing: 'Prix', selfHost: 'Auto-hébergement', docs: 'Aide',
-    login: 'Se connecter', start: 'Créer mon immeuble', menu: 'Menu', close: 'Fermer', skip: 'Aller au contenu',
+    login: 'Se connecter', start: 'Créer un planning', menu: 'Menu', close: 'Fermer', skip: 'Aller au contenu',
     main: 'Navigation principale', home: 'Waschplaner – accueil',
   },
   footer: {
@@ -25,38 +26,48 @@ export default {
     hero: {
       eyebrow: 'Pour les immeubles avec une buanderie commune',
       title: 'Qui lave quand – enfin clair.',
-      text: 'Des horaires fixes comme des rendez-vous dans l’agenda, répartis équitablement et prêts en cinq minutes. Imprimez le planning gratuitement pour la buanderie – ou laissez tous les habitant·e·s réserver en ligne avec Plus.',
-      start: 'Créer mon immeuble gratuitement', selfHost: 'Héberger soi-même',
-      facts: ['Prêt en 5 minutes', 'Gratuit à imprimer', '{trial} jours de Plus offerts'],
+      text: 'Des horaires fixes comme des rendez-vous dans l’agenda, répartis équitablement et créés en cinq minutes. Imprimez le planning pour une année entière – gratuitement, sans compte, et vos saisies ne quittent jamais votre navigateur.',
+      start: 'Créer un planning gratuitement', more: 'Voir les fonctions',
+      facts: [
+        'Créé en 5 minutes',
+        'Sans compte',
+        'Reste dans votre navigateur',
+      ],
     },
     demo: {
-      house: 'Rue de l’Exemple 12', navPlan: 'Schedule', navMine: 'My laundry', range: '21–25 Sept', date: '{d}',
-      title: 'Laundry room', week: 'Week 39', today: 'Today', now: 'Now', book: 'Book', free: 'Free',
-      done: 'done', freeFrom: 'Free from {time}', bookRest: 'Book the rest', mine: 'Votre appartement : {name}',
-      days: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], // the app's own words (English)
+      house: 'Rue de l’Exemple 12', navPlan: 'Planning', navMine: 'Ma lessive', range: '21–25 sept.', date: '{d}',
+      title: 'Buanderie', week: 'Semaine 39', today: 'Aujourd’hui', now: 'Maintenant', book: 'Réserver', free: 'Libre',
+      done: 'terminé', freeFrom: 'Libre dès {time}', bookRest: 'Réserver le reste', mine: 'Votre appartement : {name}',
+      days: [
+        'lu',
+        'ma',
+        'me',
+        'je',
+        've',
+      ],
       flats: ['Rez gauche', 'Rez droite', '1er gauche', '1er droite', '2e étage'],
-      hint: 'Voici comment tout le monde utilise le planning avec Plus (l’application est en anglais ou en allemand). Essayez : touchez « Book » ou un créneau de votre appartement.',
+      hint: 'Voici à quoi ressemblera la version en ligne, où chacun réserve lui-même – elle arrive plus tard. Essayez : touchez « Réserver » ou un créneau de votre appartement.',
       booked: 'Réservé : {when}', freed: 'Libéré : {when}',
       label: 'Exemple de planning de lessive avec cinq appartements',
     },
     steps: {
       eyebrow: 'Comment ça marche',
       title: 'Votre planning de lessive en trois étapes',
-      text: 'L’administration configure l’immeuble une seule fois. Ensuite, le planning est affiché dans la buanderie – ou tout le monde l’utilise en ligne.',
+      text: 'Vous créez le planning une fois dans votre navigateur et l’affichez dans la buanderie. Plus tard, tout le monde pourra aussi l’utiliser en ligne.',
       items: [
-        { icon: 'wand', title: 'Configurer l’immeuble', text: 'En six courtes étapes, un assistant vous interroge sur les appartements, les machines et les horaires, puis propose un planning fixe équitable.' },
-        { icon: 'print', title: 'Imprimer', text: 'Deux semaines par page A4, pour chaque machine ou local. Un changement ? Il suffit de réimprimer. Gratuit jusqu’à {printFree} semaines à la fois, une année entière avec Plus.' },
-        { icon: 'users', title: 'En ligne pour tous', text: 'Avec Plus, les habitant·e·s scannent le code QR de l’affiche et réservent, échangent et annulent eux-mêmes.' },
+        { icon: 'wand', title: 'Créer le planning', text: 'En cinq courtes étapes, un assistant vous interroge sur les appartements, les machines et les horaires, puis propose un planning fixe équitable. Tout reste dans votre navigateur.' },
+        { icon: 'print', title: 'Imprimer', text: 'Deux semaines par page A4, jusqu’à une année entière, pour chaque machine ou local. Vous modifiez des jours isolés directement dans l’aperçu.' },
+        { icon: 'users', title: 'En ligne pour tous', text: 'Avec Plus, les habitant·e·s scanneront le code QR de l’affiche et réserveront, échangeront et annuleront eux-mêmes.', later: true },
       ],
     },
     features: {
       eyebrow: 'Fonctions',
       title: 'Tout ce dont une buanderie commune a besoin',
-      text: 'Gratuit pour l’administration, et avec Plus pour tout l’immeuble.',
+      text: 'Gratuit dans votre navigateur – et plus tard, avec Plus, en ligne pour tout l’immeuble.',
       items: {
-        plan: { title: 'Un planning fixe comme un agenda', text: 'Chaque mardi, toutes les 2 semaines ou le premier lundi du mois – comme des rendez-vous qui se répètent. L’assistant répartit le temps équitablement.' },
+        plan: { title: 'Un planning fixe comme un agenda', text: 'Chaque mardi, toutes les 2 semaines ou le premier lundi du mois – comme des rendez-vous qui se répètent. L’assistant répartit le temps équitablement et laisse libre autant de temps que vous le souhaitez pour les lessives spontanées.' },
         rooms: { title: 'Votre buanderie, telle qu’elle est', text: 'Lave-linge, sèche-linge et étendages : réservés ensemble comme une seule buanderie, séparément ou de façon mixte. Avec leurs propres horaires par jour.' },
-        print: { title: 'À imprimer et à afficher', text: 'Deux semaines par page A4, par machine ou par local. Gratuit jusqu’à {printFree} semaines à la fois, une année entière avec Plus. Depuis la fenêtre d’impression, vous pouvez aussi enregistrer le planning en PDF.' },
+        print: { title: 'À imprimer et à afficher', text: 'Deux semaines par page A4, par machine ou par local, jusqu’à une année entière. Depuis la fenêtre d’impression, vous pouvez aussi enregistrer le planning en PDF.' },
         book: { title: 'Réserver en un geste', text: 'Chaque appartement réserve lui-même les créneaux libres, aussi souvent que le règlement le permet, et libère ou déplace les siens.' },
         finish: { title: 'Terminé – libérer le reste', text: 'Fini plus tôt ? Un geste, et le reste du créneau est libre pour tous. Annulable tant que personne ne l’a réservé.' },
         takeover: { title: 'Des règles équitables pour reprendre', text: 'Qui ne vient pas peut perdre son créneau après un délai d’attente. Le check-in le protège. L’appartement concerné est averti.' },
@@ -70,32 +81,32 @@ export default {
       text: 'Waschplaner est fait pour les personnes qui n’ont pas envie de s’occuper de technique.',
       items: [
         { icon: 'text-size', title: 'Grands caractères sur demande', text: 'Normal, grand ou très grand, par appareil. De grands boutons et des mots simples plutôt que du jargon.' },
-        { icon: 'qr', title: 'Sans mot de passe', text: 'Scanner le code QR, saisir le code d’accès, c’est tout. Seules les personnes qui veulent se connecter sur d’autres appareils ont besoin d’un mot de passe.' },
-        { icon: 'shield', title: 'Seulement les données nécessaires', text: 'Les appartements s’appellent « Rez gauche », pas « Famille Dupont ». Le prénom suffit ; l’e-mail ne sert qu’à se connecter.' },
-        { icon: 'globe', title: 'Deutsch et English', text: 'L’application existe en allemand et en anglais ; chacun choisit sa langue. Et qui n’est pas en ligne lit le planning sur papier.' },
+        { icon: 'lock', title: 'Sans compte', text: 'Pas de compte, pas d’e-mail, pas de mot de passe. Vous créez le planning directement dans votre navigateur, et vos saisies ne le quittent pas.' },
+        { icon: 'shield', title: 'Seulement les données nécessaires', text: 'Les appartements s’appellent « Rez gauche », pas « Famille Dupont ». Ce que vous saisissez reste sur votre appareil.' },
+        { icon: 'globe', title: 'Quatre langues', text: 'Deutsch, Français, Italiano et English – chacun choisit sa langue. Et qui n’est pas en ligne lit le planning sur papier.' },
       ],
     },
     ways: {
-      eyebrow: 'Gratuit ou Plus',
-      title: 'Gratuit sur papier, en ligne avec Plus',
-      text: 'En version gratuite, vous imprimez le planning. Avec Plus, tous les habitant·e·s l’utilisent en ligne – {trial} jours offerts, puis CHF {price} par appartement et par an. Ou vous hébergez Waschplaner vous-même.',
+      eyebrow: 'Aujourd’hui et plus tard',
+      title: 'Gratuit dans le navigateur aujourd’hui, en ligne pour tous plus tard',
+      text: 'Vous créez et imprimez le planning gratuitement dans votre navigateur dès aujourd’hui. La version en ligne, où chacun réserve lui-même, arrivera plus tard avec Plus – pour CHF {price} par appartement et par an.',
       compare: 'Comparer toutes les fonctions',
     },
     faq: {
       title: 'Questions fréquentes',
       items: [
-        { q: 'Quelle est la différence entre Gratuit et Plus ?', a: 'En version gratuite, l’administration crée le planning, modifie des jours isolés et l’imprime pour la buanderie, jusqu’à {printFree} semaines à la fois. Avec Plus, tous les habitant·e·s l’utilisent en ligne : réserver, libérer, reprendre – avec e-mails et abonnement au calendrier. Vous pouvez alors aussi imprimer une année entière en une fois. [Comparer les prix](/pricing)' },
-        { q: 'Faut-il installer une application ?', a: 'Non. Waschplaner fonctionne dans le navigateur, sur téléphone, tablette et ordinateur. Si vous le souhaitez, ajoutez-le à votre téléphone avec « Install as an app » ou « Sur l’écran d’accueil ».' },
-        { q: 'Tous les habitant·e·s ont-ils besoin d’un smartphone ?', a: 'Non. Avec Plus, n’importe quel navigateur suffit, et l’administration peut réserver pour chaque appartement. Sans Plus, le planning est de toute façon affiché sur papier dans la buanderie.' },
-        { q: 'Que se passe-t-il si quelqu’un n’utilise pas son créneau ?', a: 'C’est vous qui décidez dans le règlement : les autres peuvent le reprendre après un délai d’attente (par défaut), à tout moment ou jamais. Qui a fait son check-in garde toujours son créneau.' },
-        { q: 'Puis-je héberger Waschplaner moi-même ?', a: 'Oui. Le code source est public. Avec Docker, Waschplaner fonctionne sur votre propre serveur avec toutes les fonctions, et vous y activez Plus gratuitement. [Lire le guide](/docs/self-hosting)' },
-        { q: 'Waschplaner existe-t-il en français ou en italien ?', a: 'Ce site, oui. L’application elle-même est pour l’instant en allemand et en anglais.' },
-        { q: 'Où sont stockées nos données ?', a: 'Pour Waschplaner hébergé, sur notre serveur ; en auto-hébergement, sur le vôtre. Nous ne stockons que ce dont le planning a besoin et ne transmettons rien. [Protection des données](/privacy)' },
+        { q: 'Combien coûte le planificateur ?', a: 'Rien. Vous créez le planning dans votre navigateur et l’imprimez pour une année au maximum – gratuitement et sans compte. La version en ligne arrivera plus tard avec Plus. [Voir les prix](/pricing)' },
+        { q: 'Où vont mes saisies ?', a: 'Uniquement dans votre navigateur. Le planificateur n’envoie rien à un serveur – pas non plus à nous. Pour continuer sur un autre appareil, enregistrez le planning comme fichier.' },
+        { q: 'Puis-je modifier le planning plus tard ?', a: 'Oui. Dans le même navigateur, il est toujours là à votre prochaine visite ; sinon, ouvrez le fichier enregistré. Vous modifiez des jours isolés dans l’aperçu, puis vous réimprimez simplement.' },
+        { q: 'Tous les habitant·e·s ont-ils besoin d’un smartphone ?', a: 'Non. Le planning est affiché sur papier dans la buanderie. Avec Plus, tout le monde pourra plus tard l’utiliser aussi en ligne – si on le souhaite.' },
+        { q: 'Puis-je héberger Waschplaner moi-même ?', a: 'Cela viendra plus tard, avec la version en ligne.' },
+        { q: 'Waschplaner existe-t-il en français ou en italien ?', a: 'Oui. Le site et le planificateur existent en allemand, en français, en italien et en anglais.' },
+        { q: 'Quand arrive la version en ligne ?', a: 'Nous y travaillons. Avec Plus, tout l’immeuble utilisera le planning en ligne, réservera et échangera – pour CHF {price} par appartement et par an. D’ici là, le planificateur dans le navigateur est gratuit.' },
       ],
     },
     cta: {
       title: 'Prêts pour une journée de lessive détendue ?',
-      text: 'Créez votre planning de lessive en cinq minutes : gratuit à imprimer, avec {trial} jours de Plus offerts.',
+      text: 'Créez votre planning de lessive en cinq minutes : gratuitement, sans compte et directement dans votre navigateur.',
     },
   },
 
@@ -103,20 +114,27 @@ export default {
     title: 'Prix',
     head: {
       eyebrow: 'Prix',
-      title: 'Gratuit sur papier. En ligne pour tous avec Plus.',
-      text: 'Plus coûte CHF {price} par appartement et par an, et les {trial} premiers jours sont offerts. Pas d’abonnement, pas de coût par personne et aucune limite quant au nombre d’appartements ou de machines.',
+      title: 'Gratuit dans le navigateur aujourd’hui. En ligne pour tous avec Plus plus tard.',
+      text: 'Vous créez et imprimez le planning gratuitement et sans compte dès aujourd’hui. La version en ligne avec Plus et l’auto-hébergement arriveront plus tard ; les prix ci-dessous s’appliqueront alors.',
     },
     plans: {
       free: {
-        name: 'Gratuit', tag: 'À imprimer', price: 'CHF 0', unit: 'pour toujours', cta: 'Créer mon immeuble gratuitement',
-        text: 'L’administration crée le planning et l’imprime pour la buanderie.',
-        points: ['Un immeuble, autant d’appartements et de machines que nécessaire', 'Configuration en six étapes, avec un planning fixe équitable', 'Modifier des jours isolés', 'Imprimer : jusqu’à {printFree} semaines à la fois, aussi en PDF', 'Les habitant·e·s n’ont pas besoin de compte'],
+        name: 'Gratuit', tag: 'Dans le navigateur', badge: 'Disponible maintenant', price: 'CHF 0', unit: 'sans compte', cta: 'Créer un planning maintenant',
+        text: 'Créez le planning directement dans votre navigateur et imprimez-le. Vos saisies ne quittent jamais votre navigateur.',
+        points: [
+          'Sans compte et sans e-mail',
+          'Vos saisies restent dans le navigateur',
+          'Planning fixe avec une proposition équitable',
+          'Modifier des jours isolés',
+          'Imprimer une année entière, aussi en PDF',
+          'Enregistrer comme fichier et continuer plus tard',
+        ],
       },
       plus: {
         name: 'Plus', tag: 'En ligne pour tous', price: 'CHF {price}', unit: 'par appartement et par an', cta: 'Essayer {trial} jours gratuitement',
         badge: '{trial} jours offerts',
         text: 'Tous les habitant·e·s utilisent le planning en ligne – et le serveur s’occupe du reste.',
-        points: ['Tout ce qu’offre Gratuit', 'Imprimer une année entière en une fois', 'Inviter avec un code QR et des codes d’accès', 'Réserver, libérer, reprendre, déplacer, check-in', 'E-mail en cas de changement et abonnement au calendrier', 'Vue publique du planning pour la buanderie', 'Sans abonnement : rien ne se renouvelle tout seul'],
+        points: ['Tout ce qu’offre Gratuit', 'Inviter avec un code QR et des codes d’accès', 'Réserver, libérer, reprendre, déplacer, check-in', 'E-mail en cas de changement et abonnement au calendrier', 'Vue publique du planning pour la buanderie', 'Sans abonnement : rien ne se renouvelle tout seul'],
       },
       self: {
         name: 'Auto-hébergé', tag: 'Votre serveur', price: 'CHF 0', unit: 'sur votre serveur', cta: 'Lire le guide',
@@ -130,7 +148,13 @@ export default {
       text: 'Créer et imprimer un planning ne demande presque aucune puissance de calcul. Dès que tout le monde réserve en ligne, le serveur travaille pour chaque appartement, jour et nuit. C’est pourquoi Plus se paie par appartement – et ne coûte que ce qu’il faut.',
       free: {
         title: 'Gratuit : pour l’administration', tag: 'Gratuit',
-        items: ['Configurer l’immeuble en six étapes', 'Répartir équitablement les horaires fixes', 'Modifier des jours isolés', 'Imprimer jusqu’à {printFree} semaines à la fois', 'Tout reste enregistré'],
+        items: [
+          'Créer le planning en cinq étapes',
+          'Répartir équitablement les horaires fixes',
+          'Modifier des jours isolés',
+          'Imprimer une année entière',
+          'Tout reste dans votre navigateur',
+        ],
       },
       plus: {
         title: 'Plus : pour tout l’immeuble', tag: 'Plus',
@@ -144,7 +168,7 @@ export default {
       },
     },
     journey: {
-      eyebrow: 'Comment fonctionne Plus',
+      eyebrow: 'Comment fonctionnera Plus',
       title: 'Essayer, acheter, prolonger – sans abonnement',
       text: 'L’administration achète Plus pour un an. Rien ne se renouvelle tout seul, et personne n’a de mauvaise surprise.',
       steps: [
@@ -169,7 +193,7 @@ export default {
       },
       rows: {
         house: 'Un immeuble avec autant d’appartements et de machines que nécessaire',
-        wizard: 'Configuration en six étapes avec un planning fixe équitable',
+        wizard: 'Configuration avec un planning fixe équitable',
         edit: 'Modifier des jours isolés',
         print: 'Imprimer (deux semaines par page A4)',
         join: 'Inviter avec un code QR et des codes d’accès',
@@ -198,6 +222,7 @@ export default {
     faq: {
       title: 'Questions sur le prix et le paiement',
       items: [
+        { q: 'Quand arrive Plus ?', a: 'Nous y travaillons. D’ici là, vous créez et imprimez le planning gratuitement dans votre navigateur – sans compte. [Créer un planning](/planner)' },
         { q: 'Qui paie Plus ?', a: 'L’administration, pour tout l’immeuble. Les habitant·e·s ne paient jamais rien et ne saisissent aucune donnée de paiement.' },
         { q: 'Comment les appartements sont-ils comptés ?', a: 'Vous payez pour les appartements actifs. Si un appartement s’ajoute en cours d’année, vous payez, avant qu’il ne démarre, sa part jusqu’à la fin de l’année (au moins CHF {min}). Personne d’autre ne remarque quoi que ce soit.' },
         { q: 'Plus se renouvelle-t-il tout seul ?', a: 'Non, Plus n’est pas un abonnement. Nous vous le rappelons par e-mail {remind} jours avant la fin. Si vous prolongez durant les {renew} derniers jours, la nouvelle année ne commence qu’à la fin de l’ancienne.' },
@@ -209,6 +234,7 @@ export default {
   },
 
   docs: {
+    later: 'Cette page décrit la version en ligne. Elle arrivera plus tard – aujourd’hui, vous créez le planning [dans votre navigateur](/planner).',
     appLanguage: 'L’application est en allemand et en anglais. Les boutons sont cités avec leur nom anglais, p. ex. «\u00a0Book\u00a0»\u00a0; le [glossaire](/docs/glossary) donne aussi l’allemand.',
     title: 'Aide et documentation',
     intro: 'Comment configurer Waschplaner, l’utiliser au quotidien et l’héberger vous-même.',

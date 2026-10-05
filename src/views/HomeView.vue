@@ -6,11 +6,12 @@ import FaqList from '../components/FaqList.vue'
 import PlanCards from '../components/PlanCards.vue'
 import { usePageTitle } from '../composables/usePageTitle'
 import { t, tm } from '../i18n'
-import { appLink } from '../site'
+import { ONLINE_AVAILABLE } from '../site'
 
 usePageTitle(() => t('home.title'))
 
-// What is on Free and what comes with Plus, as in the app.
+// What is on Free (the planner in the browser) and what comes with Plus, as in the app.
+// Until the online version exists, the Plus features are greyed out as "coming later".
 const FEATURES = [
   { key: 'plan', icon: 'repeat' },
   { key: 'rooms', icon: 'layers' },
@@ -32,11 +33,11 @@ const FEATURES = [
         <h1>{{ $t('home.hero.title') }}</h1>
         <p class="lead">{{ $t('home.hero.text') }}</p>
         <div class="row hero-actions">
-          <a class="btn lg" :href="appLink('/setup')">
+          <RouterLink class="btn lg" to="/planner">
             {{ $t('home.hero.start') }} <BaseIcon name="arrow-right" :size="18" />
-          </a>
-          <RouterLink class="btn ghost lg" to="/docs/self-hosting">
-            <BaseIcon name="server" :size="18" /> {{ $t('home.hero.selfHost') }}
+          </RouterLink>
+          <RouterLink class="btn ghost lg" :to="{ path: '/', hash: '#features' }">
+            <BaseIcon name="list" :size="18" /> {{ $t('home.hero.more') }}
           </RouterLink>
         </div>
         <ul class="hero-facts">
@@ -58,8 +59,9 @@ const FEATURES = [
         <p>{{ $t('home.steps.text') }}</p>
       </div>
       <ol class="steps">
-        <li v-for="(step, i) in tm('home.steps.items')" :key="step.title" class="step">
+        <li v-for="(step, i) in tm('home.steps.items')" :key="step.title" class="step" :class="{ later: step.later && !ONLINE_AVAILABLE }">
           <span class="step-num" aria-hidden="true">{{ i + 1 }}</span>
+          <span v-if="step.later && !ONLINE_AVAILABLE" class="badge later-badge"><BaseIcon name="clock" :size="12" /> {{ $t('common.later') }}</span>
           <span class="icon-tile"><BaseIcon :name="step.icon" :size="22" /></span>
           <h3>{{ step.title }}</h3>
           <p>{{ step.text }}</p>
@@ -77,10 +79,11 @@ const FEATURES = [
         <p>{{ $t('home.features.text') }}</p>
       </div>
       <div class="features">
-        <article v-for="f in FEATURES" :key="f.key" class="feature">
+        <article v-for="f in FEATURES" :key="f.key" class="feature" :class="{ later: f.plus && !ONLINE_AVAILABLE }">
           <div class="feature-head">
             <span class="icon-tile" :class="{ ok: !f.plus }"><BaseIcon :name="f.icon" :size="22" /></span>
-            <span class="badge" :class="f.plus ? 'primary' : 'ok'">{{ $t(f.plus ? 'common.plus' : 'common.free') }}</span>
+            <span v-if="f.plus && !ONLINE_AVAILABLE" class="badge later-badge"><BaseIcon name="clock" :size="12" /> {{ $t('common.laterPlus') }}</span>
+            <span v-else class="badge" :class="f.plus ? 'primary' : 'ok'">{{ $t(f.plus ? 'common.plus' : 'common.free') }}</span>
           </div>
           <h3>{{ $t(`home.features.items.${f.key}.title`) }}</h3>
           <p>{{ $t(`home.features.items.${f.key}.text`) }}</p>
@@ -144,9 +147,9 @@ const FEATURES = [
           <h2>{{ $t('home.cta.title') }}</h2>
           <p>{{ $t('home.cta.text') }}</p>
         </div>
-        <a class="btn lg cta-btn" :href="appLink('/setup')">
+        <RouterLink class="btn lg cta-btn" to="/planner">
           {{ $t('home.hero.start') }} <BaseIcon name="arrow-right" :size="18" />
-        </a>
+        </RouterLink>
       </div>
     </div>
   </section>
@@ -177,6 +180,12 @@ const FEATURES = [
 .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 .feature { padding: 1.25rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
 .feature-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+/* Coming later (the online version): readable, but clearly not on offer yet. */
+.later-badge { background: var(--surface-3); color: var(--text-2); }
+.feature.later, .step.later { background: var(--surface-2); box-shadow: none; }
+.feature.later .icon-tile, .feature.later h3, .feature.later p,
+.step.later .icon-tile, .step.later h3, .step.later p { opacity: 0.6; filter: grayscale(1); }
+.step .later-badge { position: absolute; top: 1.25rem; left: 4.25rem; }
 .feature h3 { margin: 0.9rem 0 0.3rem; }
 .feature p { margin: 0; color: var(--text-2); font-size: 0.95rem; }
 
